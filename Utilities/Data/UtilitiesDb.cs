@@ -1,0 +1,27 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Utilities.Models;
+
+namespace Utilities.Data
+{
+    public class UtilitiesDb : DbContext
+    {
+        public UtilitiesDb(DbContextOptions<UtilitiesDb> options)
+            : base(options)
+        {
+
+        }
+
+        public virtual DbSet<Apartment> Apartments { get; set; }
+
+        public virtual DbSet<Meter> Meters { get; set; }
+
+        public virtual DbSet<MeterLocation> MeterLocations { get; set; }
+
+        public virtual DbSet<MeterDocument> MeterDocuments { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+    }
+}
