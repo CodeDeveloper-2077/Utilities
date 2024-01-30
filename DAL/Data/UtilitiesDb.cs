@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DAL.Configurations;
+using Microsoft.EntityFrameworkCore;
 using Utilities.Models;
 
 namespace Utilities.Data
@@ -22,6 +23,9 @@ namespace Utilities.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new MeterConfiguration());
+            modelBuilder.ApplyConfiguration(new ApartmentConfiguration());
         }
     }
 }

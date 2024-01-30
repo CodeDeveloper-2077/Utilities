@@ -6,6 +6,11 @@
 
         public string? RelatedFamily { get; set; }
 
+        public int MeterDocumentId { get; set; }
+
+        public MeterDocument? MeterDocument { get; set; }
+
+
         public IEnumerable<Meter> Meters;
 
         public Apartment()

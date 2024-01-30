@@ -1,3 +1,4 @@
+using DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Utilities.Data;
 
@@ -10,6 +11,8 @@ builder.Services.AddDbContext<UtilitiesDb>(options =>
 {
     options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=UtilitiesDb;Integrated Security=True;");
 });
+
+builder.Services.AddTransient<UnitOfWork>();
 
 var app = builder.Build();
 

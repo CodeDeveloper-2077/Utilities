@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DAL.UnitOfWork;
+using Microsoft.AspNetCore.Mvc;
+using Utilities.Models;
 
 namespace Utilities.Controllers
 {
@@ -12,22 +14,18 @@ namespace Utilities.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly UnitOfWork _unitOfWork;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, UnitOfWork unitOfWork)
         {
             _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<MeterLocation> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return _unitOfWork.MeterLocationRepository.GetAll();
         }
     }
 }

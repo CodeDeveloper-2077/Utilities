@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Utilities.Data;
 
@@ -11,9 +12,11 @@ using Utilities.Data;
 namespace Utilities.Migrations
 {
     [DbContext(typeof(UtilitiesDb))]
-    partial class UtilitiesDbModelSnapshot : ModelSnapshot
+    [Migration("20240130164458_ConfigMigration")]
+    partial class ConfigMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,8 +33,12 @@ namespace Utilities.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ApartmentId"));
 
+                    b.Property<int>("MeterDocumentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("RelatedFamily")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.HasKey("ApartmentId");
 
@@ -46,14 +53,19 @@ namespace Utilities.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MeterId"));
 
+                    b.Property<int>("ApartmentId")
+                        .HasColumnType("int");
+
                     b.Property<int>("MeterLocationId")
                         .HasColumnType("int");
 
                     b.Property<string>("MeterName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<long>("MeterNumber")
-                        .HasColumnType("bigint");
+                    b.Property<string>("MeterNumber")
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
 
                     b.Property<DateTime>("NextCheckDate")
                         .HasColumnType("datetime2");
@@ -63,7 +75,7 @@ namespace Utilities.Migrations
 
                     b.HasKey("MeterId");
 
-                    b.HasIndex("MeterLocationId");
+                    b.HasIndex("ApartmentId");
 
                     b.ToTable("Meters");
                 });
@@ -80,11 +92,13 @@ namespace Utilities.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Body")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MeterDocumentId");
 
-                    b.HasIndex("ApartmentId");
+                    b.HasIndex("ApartmentId")
+                        .IsUnique();
 
                     b.ToTable("MeterDocuments");
                 });
@@ -97,35 +111,64 @@ namespace Utilities.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MeterLocationId"));
 
+                    b.Property<int>("MeterId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MeterLocationId");
 
+                    b.HasIndex("MeterId")
+                        .IsUnique();
+
                     b.ToTable("MeterLocations");
                 });
 
             modelBuilder.Entity("Utilities.Models.Meter", b =>
                 {
-                    b.HasOne("Utilities.Models.MeterLocation", "MeterLocation")
-                        .WithMany()
-                        .HasForeignKey("MeterLocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("MeterLocation");
-                });
-
-            modelBuilder.Entity("Utilities.Models.MeterDocument", b =>
-                {
                     b.HasOne("Utilities.Models.Apartment", "Apartment")
-                        .WithMany()
+                        .WithMany("Meters")
                         .HasForeignKey("ApartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Apartment");
+                });
+
+            modelBuilder.Entity("Utilities.Models.MeterDocument", b =>
+                {
+                    b.HasOne("Utilities.Models.Apartment", "Apartment")
+                        .WithOne("MeterDocument")
+                        .HasForeignKey("Utilities.Models.MeterDocument", "ApartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Apartment");
+                });
+
+            modelBuilder.Entity("Utilities.Models.MeterLocation", b =>
+                {
+                    b.HasOne("Utilities.Models.Meter", "Meter")
+                        .WithOne("MeterLocation")
+                        .HasForeignKey("Utilities.Models.MeterLocation", "MeterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Meter");
+                });
+
+            modelBuilder.Entity("Utilities.Models.Apartment", b =>
+                {
+                    b.Navigation("MeterDocument");
+
+                    b.Navigation("Meters");
+                });
+
+            modelBuilder.Entity("Utilities.Models.Meter", b =>
+                {
+                    b.Navigation("MeterLocation");
                 });
 #pragma warning restore 612, 618
         }
