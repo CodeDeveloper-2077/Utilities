@@ -17,7 +17,7 @@ namespace DAL.UnitOfWork
             _context = context;
         }
 
-        public GenericRepository<Apartment> EmployeeRepository
+        public GenericRepository<Apartment> ApartmentRepository
         {
             get
             {

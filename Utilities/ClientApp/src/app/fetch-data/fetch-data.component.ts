@@ -13,7 +13,7 @@ export class FetchDataComponent {
     // http.get<WeatherForecast[]>(baseUrl + 'weatherforecast').subscribe(result => {
     //   this.forecasts = result;
     // }, error => console.error(error));
-    http.get<Array<MeterLocation>>(baseUrl + "weatherforecast").subscribe(result => {
+    http.get<Array<MeterLocation>>(baseUrl + "utility").subscribe(result => {
       this.meterLocations = result;
     }, error => console.error(error));
   }
