@@ -8,7 +8,7 @@ namespace DAL.Configurations
     {
         public void Configure(EntityTypeBuilder<Apartment> builder)
         {
-            builder.HasKey(a => a.ApartmentId);
+            builder.HasKey(a => a.Id);
 
             builder.Property(a => a.RelatedFamily)
                    .HasMaxLength(250);

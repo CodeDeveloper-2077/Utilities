@@ -8,7 +8,7 @@ namespace DAL.Configurations
     {
         public void Configure(EntityTypeBuilder<Meter> builder)
         {
-            builder.HasKey(m => m.MeterId);
+            builder.HasKey(m => m.Id);
 
             builder.Property(m => m.MeterName).HasMaxLength(50);
             builder.Property(m => m.MeterNumber).HasMaxLength(8);

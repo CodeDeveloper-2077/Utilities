@@ -2,7 +2,7 @@
 {
     public class Apartment
     {
-        public int ApartmentId { get; set; }
+        public int Id { get; set; }
 
         public string? RelatedFamily { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using DAL.UnitOfWork;
+using LoggerService;
 using Microsoft.AspNetCore.Mvc;
 using Utilities.Models;
 
@@ -8,10 +9,10 @@ namespace Utilities.Controllers
     [Route("[controller]")]
     public class UtilityController : ControllerBase
     {
-        private readonly ILogger<UtilityController> _logger;
+        private readonly ILoggerManager _logger;
         private readonly UnitOfWork _unitOfWork;
 
-        public UtilityController(ILogger<UtilityController> logger, UnitOfWork unitOfWork)
+        public UtilityController(ILoggerManager logger, UnitOfWork unitOfWork)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
@@ -20,7 +21,26 @@ namespace Utilities.Controllers
         [HttpGet]
         public IEnumerable<MeterLocation> Get()
         {
+            _logger.LogInfo("Hello world");
             return _unitOfWork.MeterLocationRepository.GetAll();
+        }
+
+        [HttpPost]
+        public Task<IActionResult> Post()
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPut("{id:int}")]
+        public Task<IActionResult> Put(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpDelete("{id:int}")]
+        public Task<IActionResult> Delete(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

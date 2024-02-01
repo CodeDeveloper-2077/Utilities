@@ -1,10 +1,24 @@
 using DAL.UnitOfWork;
+using LoggerService;
 using Microsoft.EntityFrameworkCore;
+using NLog.Extensions.Logging;
 using Utilities.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddLogging(loggingBuilder =>
+{
+    loggingBuilder.ClearProviders();
+    loggingBuilder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Debug);
+
+    loggingBuilder.AddNLog();
+});
+builder.Services.AddScoped<ILoggerManager, LoggerManager>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<UtilitiesDb>(options =>
@@ -33,5 +47,13 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");
 
 app.MapFallbackToFile("index.html");
+
+app.UseSwagger();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    options.RoutePrefix = string.Empty;
+    options.DocumentTitle = "Utility Swagger";
+});
 
 app.Run();

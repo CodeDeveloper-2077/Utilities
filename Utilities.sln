@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities", "Utilities\Utilities.csproj", "{6FD28D68-F632-45FA-B39F-EFF3F0A3CD31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{45E93EB2-F46C-4207-8C64-C33877FA68E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{45E93EB2-F46C-4207-8C64-C33877FA68E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerService", "LoggerService\LoggerService.csproj", "{D7271AE2-78CC-4432-9B48-5F54149905A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{45E93EB2-F46C-4207-8C64-C33877FA68E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45E93EB2-F46C-4207-8C64-C33877FA68E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45E93EB2-F46C-4207-8C64-C33877FA68E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7271AE2-78CC-4432-9B48-5F54149905A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7271AE2-78CC-4432-9B48-5F54149905A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7271AE2-78CC-4432-9B48-5F54149905A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7271AE2-78CC-4432-9B48-5F54149905A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
