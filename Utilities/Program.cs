@@ -1,3 +1,4 @@
+using DAL.Profiles;
 using DAL.UnitOfWork;
 using LoggerService;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ builder.Services.AddLogging(loggingBuilder =>
 });
 builder.Services.AddScoped<ILoggerManager, LoggerManager>();
 
+builder.Services.AddAutoMapper(typeof(MapperInitializer));
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<UtilitiesDb>(options =>
 {

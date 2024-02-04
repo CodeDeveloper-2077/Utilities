@@ -2,12 +2,12 @@
 {
     public interface IGenericRepository<TEntity> : IDisposable
     {
-        IEnumerable<TEntity> GetAll();
-        TEntity GetById(int id);
-        IEnumerable<TEntity> GetWithPredicate(Func<TEntity, bool> predicate);
-        void Add(TEntity entity);
-        void Delete(int entityId);
-        void Update(TEntity entity);
-        void Save();
+        Task<IEnumerable<TEntity>> GetAllAsync();
+        Task<TEntity> GetByIdAsync(int id);
+        Task<IEnumerable<TEntity>> GetWithPredicateAsync(Func<TEntity, bool> predicate);
+        Task AddAsync(TEntity entity);
+        Task DeleteAsync(int entityId);
+        Task UpdateAsync(TEntity entity);
+        Task<int> SaveAsync();
     }
 }

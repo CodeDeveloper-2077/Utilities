@@ -14,14 +14,14 @@ namespace DAL.Repository
             _dbSet = _context.Set<TEntity>();
         }
 
-        public void Add(TEntity task)
+        public async Task AddAsync(TEntity entity)
         {
-            _dbSet.Add(task);
+            await _dbSet.AddAsync(entity);
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            var entity = _dbSet.Find(id);
+            var entity = await _dbSet.FindAsync(id);
             Delete(entity);
         }
 
@@ -30,29 +30,33 @@ namespace DAL.Repository
             _dbSet.Remove(entity);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return _dbSet.ToList();
+            return await _dbSet.ToListAsync();
         }
 
-        public IEnumerable<TEntity> GetWithPredicate(Func<TEntity, bool> predicate)
+        public async Task<IEnumerable<TEntity>> GetWithPredicateAsync(Func<TEntity, bool> predicate)
         {
-            return _dbSet.Where(predicate);
+            var list = await _dbSet.ToListAsync();
+            return list.Where(predicate);
         }
 
-        public TEntity GetById(int id)
+        public async Task<TEntity> GetByIdAsync(int id)
         {
-            return _dbSet.Find(id);
+            return await _dbSet.FindAsync(id);
         }
 
-        public void Save()
+        public async Task UpdateAsync(TEntity entity)
         {
-            _context.SaveChanges();
+            await Task.Run(() =>
+            {
+                _dbSet.Update(entity);
+            });
         }
 
-        public void Update(TEntity entity)
+        public async Task<int> SaveAsync()
         {
-            _dbSet.Update(entity);
+            return await _context.SaveChangesAsync();
         }
 
         private bool disposed = false;
