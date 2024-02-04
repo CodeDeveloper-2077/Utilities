@@ -10,8 +10,12 @@ namespace DAL.Profiles
         public MapperInitializer()
         {
             CreateMap<Apartment, ApartmentDto>().ReverseMap();
-            CreateMap<Location, LocationDto>().ReverseMap();
             CreateMap<Meter, MeterDto>().ReverseMap();
+            CreateMap<Location, LocationDto>().ReverseMap();
+            CreateMap<Country, CountryDto>().ReverseMap();
+            CreateMap<Area, AreaDto>().ReverseMap();
+            CreateMap<City, CityDto>().ReverseMap();
+            CreateMap<Street, StreetDto>().ReverseMap();
             CreateMap<MeterDocument, MeterDocumentDto>().ReverseMap();
             CreateMap<MeterLocation, MeterLocationDto>().ReverseMap();
         }
