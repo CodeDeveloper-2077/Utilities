@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Utilities.Data;
 
@@ -11,9 +12,11 @@ using Utilities.Data;
 namespace Utilities.Migrations
 {
     [DbContext(typeof(UtilitiesDb))]
-    partial class UtilitiesDbModelSnapshot : ModelSnapshot
+    [Migration("20240206164753_ChangeMeterDocumentMigration")]
+    partial class ChangeMeterDocumentMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,6 +94,9 @@ namespace Utilities.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ApartmentId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CityId")
                         .HasColumnType("int");
 
@@ -99,6 +105,9 @@ namespace Utilities.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApartmentId")
+                        .IsUnique();
 
                     b.HasIndex("CityId");
 
@@ -127,6 +136,9 @@ namespace Utilities.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("MeterDocumentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ReceiptCode")
                         .HasColumnType("nvarchar(max)");
 
@@ -143,8 +155,6 @@ namespace Utilities.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StreetId");
-
                     b.ToTable("Apartments");
                 });
 
@@ -157,6 +167,9 @@ namespace Utilities.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ApartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MeterLocationId")
                         .HasColumnType("int");
 
                     b.Property<string>("MeterName")
@@ -250,24 +263,21 @@ namespace Utilities.Migrations
 
             modelBuilder.Entity("DAL.Models.Street", b =>
                 {
+                    b.HasOne("Utilities.Models.Apartment", "Apartment")
+                        .WithOne("Street")
+                        .HasForeignKey("DAL.Models.Street", "ApartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DAL.Models.City", "City")
                         .WithMany("Streets")
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Apartment");
+
                     b.Navigation("City");
-                });
-
-            modelBuilder.Entity("Utilities.Models.Apartment", b =>
-                {
-                    b.HasOne("DAL.Models.Street", "Street")
-                        .WithMany("Apartments")
-                        .HasForeignKey("StreetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Street");
                 });
 
             modelBuilder.Entity("Utilities.Models.Meter", b =>
@@ -318,16 +328,13 @@ namespace Utilities.Migrations
                     b.Navigation("Areas");
                 });
 
-            modelBuilder.Entity("DAL.Models.Street", b =>
-                {
-                    b.Navigation("Apartments");
-                });
-
             modelBuilder.Entity("Utilities.Models.Apartment", b =>
                 {
                     b.Navigation("MeterDocument");
 
                     b.Navigation("Meters");
+
+                    b.Navigation("Street");
                 });
 
             modelBuilder.Entity("Utilities.Models.Meter", b =>

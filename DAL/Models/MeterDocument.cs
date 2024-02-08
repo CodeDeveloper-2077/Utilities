@@ -11,6 +11,6 @@ namespace Utilities.Models
         public Apartment? Apartment { get; set; }
 
         [Required]
-        public string? Body { get; set; }
+        public byte[]? Body { get; set; }
     }
 }

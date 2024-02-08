@@ -15,9 +15,6 @@ namespace DAL.Models
 
         public City? City { get; set; }
 
-        [ForeignKey("Apartment")]
-        public int ApartmentId { get; set; }
-
-        public Apartment? Apartment { get; set; }
+        public IEnumerable<Apartment>? Apartments { get; set; }
     }
 }

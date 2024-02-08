@@ -1,6 +1,7 @@
 ﻿using Utilities.Data;
 using Utilities.Models;
 using DAL.Repository;
+using DAL.Models;
 
 namespace DAL.UnitOfWork
 {
@@ -8,9 +9,13 @@ namespace DAL.UnitOfWork
     {
         private readonly UtilitiesDb _context;
         private GenericRepository<Apartment> _apartmentRepository;
+        private GenericRepository<Area> _areaRepository;
+        private GenericRepository<City> _cityRepository;
+        private GenericRepository<Country> _countryRepository;
         private GenericRepository<Meter> _meterRepository;
         private GenericRepository<MeterDocument> _meterDocumentRepository;
         private GenericRepository<MeterLocation> _meterLocationRepository;
+        private GenericRepository<Street> _streetRepository;
 
         public UnitOfWork(UtilitiesDb context)
         {
@@ -26,6 +31,42 @@ namespace DAL.UnitOfWork
                     _apartmentRepository = new GenericRepository<Apartment>(_context);
                 }
                 return _apartmentRepository;
+            }
+        }
+
+        public GenericRepository<Area> AreaRepository
+        {
+            get
+            {
+                if (_areaRepository == null)
+                {
+                    _areaRepository = new GenericRepository<Area>(_context);
+                }
+                return _areaRepository;
+            }
+        }
+
+        public GenericRepository<City> CityRepository
+        {
+            get
+            {
+                if (_cityRepository == null)
+                {
+                    _cityRepository = new GenericRepository<City>(_context);
+                }
+                return _cityRepository;
+            }
+        }
+
+        public GenericRepository<Country> CountryRepository
+        {
+            get
+            {
+                if (_countryRepository == null)
+                {
+                    _countryRepository = new GenericRepository<Country>(_context);
+                }
+                return _countryRepository;
             }
         }
 
@@ -62,6 +103,18 @@ namespace DAL.UnitOfWork
                     _meterLocationRepository = new GenericRepository<MeterLocation>(_context);
                 }
                 return _meterLocationRepository;
+            }
+        }
+
+        public GenericRepository<Street> StreetRepository
+        {
+            get
+            {
+                if (_streetRepository == null)
+                {
+                    _streetRepository = new GenericRepository<Street>(_context);
+                }
+                return _streetRepository;
             }
         }
 

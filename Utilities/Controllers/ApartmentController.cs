@@ -40,36 +40,127 @@ namespace Utilities.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<IActionResult> PostApartment([FromBody] Apartment apartment)
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetApartmentById(int id)
         {
             try
             {
-                if (!ModelState.IsValid || apartment is null)
+                var apartment = await _unitOfWork.ApartmentRepository.GetByIdAsync(id);
+                if (apartment is null)
                 {
-                    return BadRequest(ModelState);
+                    _logger.LogError($"Apartment with id: {id} hasn't been found in db");
+                    return NotFound();
+                }
+                else
+                {
+                    _logger.LogInfo($"Returned apartment with id: {id}");
+
+                    var apartmentResult = _mapper.Map<ApartmentDto>(apartment);
+                    return Ok(apartmentResult);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetApartmentById action: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateApartment([FromBody] ApartmentDto apartment)
+        {
+            try
+            {
+                if (apartment is null)
+                {
+                    _logger.LogError("Apartment object sent from client is null");
+                    return BadRequest("Apartment object is null");
                 }
 
-                await _unitOfWork.ApartmentRepository.AddAsync(apartment);
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogError("Invalid apartment object sent from client");
+                    return BadRequest("Invalid model object");
+                }
 
-                return CreatedAtAction(nameof(GetAllApartments), new { id = apartment.Id }, apartment);
+                var apartmentEntity = _mapper.Map<Apartment>(apartment);
+                await _unitOfWork.ApartmentRepository.AddAsync(apartmentEntity);
+                _unitOfWork.Save();
+
+                return CreatedAtRoute("ApartmentById", new { id = apartmentEntity.Id }, apartmentEntity);
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error creating apartment record");
+                _logger.LogError($"Something went wrong inside CreateApartment action: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
             }
         }
 
         [HttpPut("{id:int}")]
-        public Task<IActionResult> Put(int id, Apartment apartment)
+        public async Task<IActionResult> UpdateApartment(int id, [FromBody] ApartmentDto apartment)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (apartment is null)
+                {
+                    _logger.LogError("Apartment object sent from client is null");
+                    return BadRequest("Apartment object is null");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogError("Invalid apartment object sent from client");
+                    return BadRequest("Invalid model object");
+                }
+
+                var apartmentEntity = await _unitOfWork.ApartmentRepository.GetByIdAsync(id);
+                if (apartmentEntity is null)
+                {
+                    _logger.LogError($"Apartment with id: {id}, hasn't been found in db");
+                    return NotFound();
+                }
+
+                apartmentEntity = _mapper.Map<Apartment>(apartment);
+                await _unitOfWork.ApartmentRepository.UpdateAsync(apartmentEntity);
+                _unitOfWork.Save();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside UpdateApartment action: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+            }
         }
 
         [HttpDelete("{id:int}")]
-        public Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteApartment(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var apartment = await _unitOfWork.ApartmentRepository.GetByIdAsync(id);
+                if (apartment is null)
+                {
+                    _logger.LogError("Apartment object sent from client is null");
+                    return BadRequest("Apartment object is null");
+                }
+
+                if (apartment.MeterDocument != null || apartment.Street != null || apartment.Meters.Any())
+                {
+                    _logger.LogError($"Cannot delete apartment with id: {id}. It has related data. Delete this data first");
+                    return BadRequest("Cannot delete apartment. It has related data. Delete this data first");
+                }
+
+                await _unitOfWork.ApartmentRepository.DeleteAsync(id);
+                _unitOfWork.Save();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside DeleteApartment action: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
         }
     }
 }

@@ -4,6 +4,6 @@
     {
         public string? Name { get; set; }
 
-        public MeterDto? Meter { get; set; }
+        public int MeterId { get; set; }
     }
 }

@@ -16,10 +16,10 @@
 
         public string? ReceiptCode { get; set; }
 
-        public MeterDocumentDto? MeterDocument { get; set; }
+        public int MeterDocumentId { get; set; }
 
-        public StreetDto? Location { get; set; }
+        public int LocationId { get; set; }
 
-        public IEnumerable<MeterDto> Meters;
+        public IEnumerable<int> MeterIds;
     }
 }

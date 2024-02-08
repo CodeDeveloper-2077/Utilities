@@ -16,8 +16,6 @@
 
         public Apartment? Apartment { get; set; }
 
-        public int MeterLocationId { get; set; }
-
         public MeterLocation? MeterLocation { get; set; }
     }
 }

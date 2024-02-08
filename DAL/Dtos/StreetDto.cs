@@ -1,9 +1,9 @@
 ﻿namespace DAL.Dtos
 {
-    public class StreetDto
+    public class StreetDto : LocationDto
     {
-        public CityDto? City { get; set; }
+        public int CityId { get; set; }
 
-        public ApartmentDto? Apartment { get; set; }
+        public int ApartmentId { get; set; }
     }
 }

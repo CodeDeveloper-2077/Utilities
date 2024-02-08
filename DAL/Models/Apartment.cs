@@ -14,13 +14,11 @@ namespace Utilities.Models
 
         public string HouseNumber { get; set; }
 
-        public int BuildingNumber{ get; set; }
+        public int BuildingNumber { get; set; }
 
         public int EntranceNumber { get; set; }
 
         public string? ReceiptCode { get; set; }
-
-        public int MeterDocumentId { get; set; }
 
         public MeterDocument? MeterDocument { get; set; }
 

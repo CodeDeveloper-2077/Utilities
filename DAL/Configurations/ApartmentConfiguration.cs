@@ -19,8 +19,8 @@ namespace DAL.Configurations
                    .HasForeignKey<MeterDocument>(md => md.ApartmentId);
 
             builder.HasOne(a => a.Street)
-                   .WithOne(s => s.Apartment)
-                   .HasForeignKey<Street>(s => s.ApartmentId);
+                   .WithMany(s => s.Apartments)
+                   .HasForeignKey(a => a.StreetId);
 
             builder.HasMany(a => a.Meters)
                    .WithOne(m => m.Apartment)
