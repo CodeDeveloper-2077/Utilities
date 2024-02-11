@@ -26,12 +26,12 @@ namespace Utilities.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllEntities()
+        public virtual async Task<IActionResult> GetAllEntities()
         {
             try
             {
                 var entities = await _unitOfWork.Repository<TEntity>().GetAllAsync();
-                _logger.LogInfo($"Returned all {typeof(TEntity).Name} from database");
+                _logger.LogInfo($"Returned all {typeof(TEntity).Name}s from database");
 
                 var entitiesResult = _mapper.Map<IEnumerable<TEntityDto>>(entities);
                 return Ok(entitiesResult);
@@ -44,7 +44,7 @@ namespace Utilities.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetEntityById(int id)
+        public virtual async Task<IActionResult> GetEntityById(int id)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace Utilities.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateEntity([FromBody] TEntityDto entityDto)
+        public virtual async Task<IActionResult> CreateEntity([FromBody] TEntityDto entityDto)
         {
             try
             {
@@ -100,7 +100,7 @@ namespace Utilities.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> UpdateEntity(int id, [FromBody] TEntityDto entityDto)
+        public virtual async Task<IActionResult> UpdateEntity(int id, [FromBody] TEntityDto entityDto)
         {
             try
             {
@@ -137,7 +137,7 @@ namespace Utilities.Controllers
         }
 
         [HttpDelete("{id:int}")]
-        public async Task<IActionResult> DeleteEntity(int id)
+        public virtual async Task<IActionResult> DeleteEntity(int id)
         {
             try
             {
