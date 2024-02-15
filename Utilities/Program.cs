@@ -9,6 +9,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyOrigin();
+        builder.AllowAnyMethod();
+        builder.AllowAnyHeader();
+    });
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -57,5 +67,7 @@ app.UseSwaggerUI(options =>
     options.RoutePrefix = string.Empty;
     options.DocumentTitle = "Utility Swagger";
 });
+
+app.UseCors("CorsPolicy");
 
 app.Run();

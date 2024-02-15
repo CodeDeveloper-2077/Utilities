@@ -1,17 +1,19 @@
-import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { MeterLocationService } from '../services/meter-location.service';
 import { MeterLocation } from '../Models/MeterLocation';
 
 @Component({
   selector: 'app-fetch-data',
+  providers: [{ provide: 'controller_name', useValue: 'api/MeterLocation' }],
   templateUrl: './fetch-data.component.html'
 })
-export class FetchDataComponent {
+export class FetchDataComponent implements OnInit {
   public meterLocations: MeterLocation[] = [];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Array<MeterLocation>>(baseUrl + "utility").subscribe(result => {
-      this.meterLocations = result;
-    }, error => console.error(error));
+  constructor(private readonly meterLocationService: MeterLocationService) { }
+
+  public ngOnInit(): void {
+    this.meterLocationService.getAll().subscribe(result => this.meterLocations = result,
+      error => console.error(error));
   }
 }

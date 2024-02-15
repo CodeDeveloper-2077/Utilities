@@ -7,14 +7,14 @@
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="meterLocations">
   <thead>
     <tr>
-      <th>Id</th>
       <th>Name</th>
+      <th>MeterId</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let location of meterLocations">
-      <td>{{location.id}}</td>
       <td>{{location.name}}</td>
+      <td>{{location.meterId}}</td>
     </tr>
   </tbody>
 </table>
