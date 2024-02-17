@@ -1,4 +1,5 @@
 export interface Apartment {
+    id: number;
     relatedFamily: string;
     registeredCountPeople: number;
     apartmentNumber: string;

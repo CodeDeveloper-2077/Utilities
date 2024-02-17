@@ -1,4 +1,5 @@
 export interface Meter {
+    id: number;
     meterName: string;
     meterNumber: string;
     prevCheckDate: Date;

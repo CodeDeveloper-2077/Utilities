@@ -1,0 +1,20 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form method="post" [formGroup]="meterLocationForm" (ngSubmit)="sendData(meterLocationForm.value)">
+          <div class="form-group">
+            <label for="first-name">Name:</label>
+            <input class="form-control" id="first-name" type="text" formControlName="name" />
+          </div>
+          
+          <div class="form-group">
+            <label for="last-name">Meter ID:</label>
+            <input class="form-control" id="last-name" type="text" formControlName="meterId" />
+          </div>
+          
+          <button class="btn btn-primary" type="submit" [disabled]="!meterLocationForm.valid">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+

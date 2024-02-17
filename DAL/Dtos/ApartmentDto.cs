@@ -2,6 +2,8 @@
 {
     public class ApartmentDto
     {
+        public int Id { get; set; }
+
         public string? RelatedFamily { get; set; }
 
         public int RegisteredCountPeople { get; set; }

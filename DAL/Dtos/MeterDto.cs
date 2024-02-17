@@ -2,6 +2,8 @@
 {
     public class MeterDto
     {
+        public int Id { get; set; }
+
         public string? MeterName { get; set; }
 
         public string? MeterNumber { get; set; }

@@ -4,6 +4,8 @@ namespace DAL.Dtos
 {
     public class MeterDocumentDto
     {
+        public int Id { get; set; }
+
         public byte[]? Body { get; set; }
 
         public int ApartmentId { get; set; }
