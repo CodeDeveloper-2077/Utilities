@@ -1,23 +1,5 @@
-<h1 id="tableLabel">Weather forecast</h1>
+<h1 id="tableLabel">Meter Locations</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p>Below you can see the list of all meter locations.</p>
 
-<p *ngIf="!meterLocations"><em>Loading...</em></p>
-<button (click)="addBtn()">Add</button>
-
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="meterLocations">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>MeterId</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let location of meterLocations">
-      <td>{{location.name}}</td>
-      <td>{{location.meterId}}</td>
-      <td><button (click)="updateBtn(location.id)">Update</button></td>
-      <td><button (click)="removeBtn(location.id)">Delete</button></td>
-    </tr>
-  </tbody>
-</table>
+<app-generic-table [headArray]="headArray" [dataArray]="meterLocations" [entityType]="entityType" [genericRestService]="meterLocationService"></app-generic-table>

@@ -8,10 +8,12 @@ import { HttpClient } from '@angular/common/http';
 import { MeterLocation } from '../Models/MeterLocation';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddEditMeterLocationComponent } from './add-edit-meter-location/add-edit-meter-location.component';
+import { GenericTableComponent } from '../generic-table/generic-table.component';
 
 @NgModule({
   declarations: [
     MeterLocationTableComponent,
+    GenericTableComponent,
     AddEditMeterLocationComponent
   ],
   imports: [
