@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { MeterLocationModule } from './meter-location/meter-location.module';
-import { GenericTableComponent } from './generic-table/generic-table.component';
+import { GenericTableComponent } from './generic-components/generic-table/generic-table.component';
 
 @NgModule({
   declarations: [

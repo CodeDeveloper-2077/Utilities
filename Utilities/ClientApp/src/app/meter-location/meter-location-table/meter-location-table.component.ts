@@ -12,7 +12,7 @@ export class MeterLocationTableComponent implements OnInit {
   public headArray: string[] = ['name', 'meterId'];
   public meterLocations: MeterLocation[] = [];
   
-  constructor(@Inject('meterLocationService') protected readonly meterLocationService: GenericRestService<MeterLocation>) { }
+  constructor(@Inject('meterLocationService') private readonly meterLocationService: GenericRestService<MeterLocation>) { }
 
   public ngOnInit(): void {
     this.meterLocationService.getAll().subscribe(result => this.meterLocations = result,

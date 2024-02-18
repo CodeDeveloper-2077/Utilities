@@ -8,16 +8,16 @@ import { HttpClient } from '@angular/common/http';
 import { MeterLocation } from '../Models/MeterLocation';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddEditMeterLocationComponent } from './add-edit-meter-location/add-edit-meter-location.component';
-import { GenericTableComponent } from '../generic-table/generic-table.component';
+import { GenericComponentsModule } from '../generic-components/generic-components.module';
 
 @NgModule({
   declarations: [
     MeterLocationTableComponent,
-    GenericTableComponent,
     AddEditMeterLocationComponent
   ],
   imports: [
     CommonModule,
+    GenericComponentsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
