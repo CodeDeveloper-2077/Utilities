@@ -1,0 +1,14 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form method="post" [formGroup]="form" (ngSubmit)="sendData(form.value)">
+          <div class="form-group" *ngFor="let field of formFields">
+            <label [for]="field">{{field}}</label>
+            <input class="form-control" [id]="field" type="text" [formControlName]="field" />
+          </div>
+          <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+

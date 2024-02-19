@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { GenericRestService } from '../../services/generic-rest.service';
+import { GenericRestService } from 'src/app/services/generic-rest.service';
 
 @Component({
   selector: 'app-generic-table',
@@ -8,10 +8,10 @@ import { GenericRestService } from '../../services/generic-rest.service';
   styleUrls: ['./generic-table.component.css']
 })
 export class GenericTableComponent {
-  private readonly genericRestService: GenericRestService<any>;
-  @Input() public entityType: string;
+  @Input() public  genericRestService: GenericRestService<any>;
   @Input() public headArray: string[];
   @Input() public dataArray: any[];
+  @Input() public entityType: string;
 
   constructor(private readonly router: Router) { }
 
