@@ -7,6 +7,7 @@ const PROXY_CONFIG = [
   {
     context: [
       "api/MeterLocation",
+      "api/Apartment"
    ],
     target: target,
     secure: false,

@@ -9,6 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { MeterLocationModule } from './meter-location/meter-location.module';
 import { GenericTableComponent } from './generic-components/generic-table/generic-table.component';
+import { ApartmentModule } from './apartment/apartment.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { GenericTableComponent } from './generic-components/generic-table/generi
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
     ]),
-    MeterLocationModule
+    MeterLocationModule,
+    ApartmentModule
   ],
   providers: [],
   bootstrap: [AppComponent],

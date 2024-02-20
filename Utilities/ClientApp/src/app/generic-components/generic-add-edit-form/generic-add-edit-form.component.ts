@@ -55,4 +55,8 @@ export class GenericAddEditFormComponent implements OnInit {
     this.genericRestService.update(this.id, entity).subscribe(result => console.log(result),
       error => console.error(error));
   }
+
+  public convertFirstLetterToUpper(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 }

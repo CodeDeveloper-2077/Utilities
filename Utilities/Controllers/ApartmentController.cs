@@ -8,7 +8,7 @@ using Utilities.Models;
 namespace Utilities.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ApartmentController : GenericRestController<Apartment, ApartmentDto>
     {
         public ApartmentController(ILoggerManager logger, IMapper mapper, UnitOfWork unitOfWork)

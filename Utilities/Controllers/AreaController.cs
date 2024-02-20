@@ -9,7 +9,7 @@ using Utilities.Models;
 namespace Utilities.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AreaController : GenericRestController<Area, AreaDto>
     {
         public AreaController(ILoggerManager logger, IMapper mapper, UnitOfWork unitOfWork)

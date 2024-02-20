@@ -9,13 +9,15 @@ import { GenericRestService } from 'src/app/services/generic-rest.service';
 })
 export class MeterLocationTableComponent implements OnInit {
   protected entityType: string = "meter-location";
-  public headArray: string[] = ['name', 'meterId'];
+  public headArray: string[] = [];
   public meterLocations: MeterLocation[] = [];
   
   constructor(@Inject('meterLocationService') protected readonly meterLocationService: GenericRestService<MeterLocation>) { }
 
   public ngOnInit(): void {
-    this.meterLocationService.getAll().subscribe(result => this.meterLocations = result,
-      error => console.error(error));
+    this.meterLocationService.getAll().subscribe(result => {
+      this.meterLocations = result;
+      this.headArray = Object.keys(this.meterLocations[0]).slice(1);
+    }, error => console.error(error));
   }
 }
