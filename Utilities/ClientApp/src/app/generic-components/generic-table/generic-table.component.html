@@ -4,7 +4,7 @@
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="dataArray">
   <thead>
     <tr>
-      <th *ngFor="let head of headArray">{{convertFirstLetterToUpper(head)}}</th>
+      <th *ngFor="let head of headArray">{{getFormattedHeads(head)}}</th>
     </tr>
   </thead>
   <tbody>

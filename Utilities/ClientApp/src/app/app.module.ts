@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { MeterLocationModule } from './meter-location/meter-location.module';
 import { GenericTableComponent } from './generic-components/generic-table/generic-table.component';
 import { ApartmentModule } from './apartment/apartment.module';
+import { AreaModule } from './area/area.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ApartmentModule } from './apartment/apartment.module';
       { path: '', component: HomeComponent, pathMatch: 'full' },
     ]),
     MeterLocationModule,
-    ApartmentModule
+    ApartmentModule,
+    AreaModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -7,12 +7,9 @@ import { GenericRestService } from 'src/app/services/generic-rest.service';
   templateUrl: './add-edit-apartment.component.html',
   styleUrls: ['./add-edit-apartment.component.css']
 })
-export class AddEditApartmentComponent implements OnInit {
+export class AddEditApartmentComponent {
   public apartmentFormFields: string[] = ['relatedFamily', 'registeredCountPeople', 'apartmentNumber', 'houseNumber', 'buildingNumber', 'entranceNumber', 'receiptCode', 'meterDocumentId', 'locationId'];
   
   public entityType: string = "apartment";
   constructor(@Inject('apartmentService') protected apartmentService: GenericRestService<Apartment>) { }
-
-  public ngOnInit(): void {
-  }
 }

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { GenericRestService } from 'src/app/services/generic-rest.service';
+import { StringConverterService } from 'src/app/services/string-converter.service';
 
 @Component({
   selector: 'app-generic-table',
@@ -13,7 +14,7 @@ export class GenericTableComponent {
   @Input() public dataArray: any[];
   @Input() public entityType: string;
 
-  constructor(private readonly router: Router) { }
+  constructor(private readonly stringConverter: StringConverterService, private readonly router: Router) { }
 
   public addBtn() {
     this.router.navigate([`add-${this.entityType}`]);
@@ -30,7 +31,7 @@ export class GenericTableComponent {
     }
   }
 
-  public convertFirstLetterToUpper(str: string): string {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+  public getFormattedHeads(head: string): string {
+    return this.stringConverter.convertFirstLetterToUpper(head);
   }
 }

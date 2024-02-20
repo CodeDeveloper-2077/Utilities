@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GenericRestService } from 'src/app/services/generic-rest.service';
+import { StringConverterService } from 'src/app/services/string-converter.service';
 
 @Component({
   selector: 'app-generic-add-edit-form',
@@ -18,7 +19,9 @@ export class GenericAddEditFormComponent implements OnInit {
   private id: number;
   private isAddMode: boolean;
 
-  constructor(private readonly fb: FormBuilder,
+  constructor(
+              private readonly stringConverter: StringConverterService,
+              private readonly fb: FormBuilder,
               private readonly router: Router,
               private readonly route: ActivatedRoute) { }
 
@@ -44,6 +47,10 @@ export class GenericAddEditFormComponent implements OnInit {
     this.router.navigate([`/${this.entityType}s`]);
   }
 
+  public getFormattedFields(field: string): string {
+    return this.stringConverter.convertFirstLetterToUpper(field);
+  }
+
   private createEntity(data: any): void {
     let entity = { ... data };
     this.genericRestService.add(entity).subscribe(result => console.log(result),
@@ -54,9 +61,5 @@ export class GenericAddEditFormComponent implements OnInit {
     let entity = { id: this.id, ... data };
     this.genericRestService.update(this.id, entity).subscribe(result => console.log(result),
       error => console.error(error));
-  }
-
-  public convertFirstLetterToUpper(str: string): string {
-    return str.charAt(0).toUpperCase() + str.slice(1);
   }
 }
