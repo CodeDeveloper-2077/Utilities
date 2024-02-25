@@ -8,9 +8,13 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { MeterLocationModule } from './meter-location/meter-location.module';
-import { GenericTableComponent } from './generic-components/generic-table/generic-table.component';
 import { ApartmentModule } from './apartment/apartment.module';
 import { AreaModule } from './area/area.module';
+import { CityModule } from './city/city.module';
+import { CountryModule } from './country/country.module';
+import { MeterDocumentModule } from './meter-document/meter-document.module';
+import { MeterModule } from './meter/meter.module';
+import { StreetModule } from './street/street.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,12 @@ import { AreaModule } from './area/area.module';
     ]),
     MeterLocationModule,
     ApartmentModule,
-    AreaModule
+    AreaModule,
+    CityModule,
+    CountryModule,
+    MeterDocumentModule,
+    MeterModule,
+    StreetModule
   ],
   providers: [],
   bootstrap: [AppComponent],
