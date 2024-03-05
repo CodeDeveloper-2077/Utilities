@@ -7,14 +7,14 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { MeterLocationModule } from './meter-location/meter-location.module';
-import { ApartmentModule } from './apartment/apartment.module';
-import { AreaModule } from './area/area.module';
-import { CityModule } from './city/city.module';
-import { CountryModule } from './country/country.module';
-import { MeterDocumentModule } from './meter-document/meter-document.module';
-import { MeterModule } from './meter/meter.module';
-import { StreetModule } from './street/street.module';
+import { MeterLocationModule } from './features/ui/meter-location/meter-location.module';
+import { ApartmentModule } from './features/ui/apartment/apartment.module';
+import { AreaModule } from './features/ui/area/area.module';
+import { CityModule } from './features/ui/city/city.module';
+import { CountryModule } from './features/ui/country/country.module';
+import { MeterDocumentModule } from './features/ui/meter-document/meter-document.module';
+import { MeterModule } from './features/ui/meter/meter.module';
+import { StreetModule } from './features/ui/street/street.module';
 
 @NgModule({
   declarations: [
