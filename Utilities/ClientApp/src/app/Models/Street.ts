@@ -1,6 +1,8 @@
+import { Apartment } from "./Apartment";
+import { City } from "./City";
 import { Location } from "./Location";
 
 export interface Street extends Location {
-    cityId: number;
-    apartmentId: number;
+    city: City;
+    apartment: Array<Apartment>;
 }

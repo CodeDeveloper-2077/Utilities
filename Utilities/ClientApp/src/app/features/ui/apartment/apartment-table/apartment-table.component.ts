@@ -17,7 +17,6 @@ export class ApartmentTableComponent implements OnInit {
   public ngOnInit(): void {
     this.apartmentService.getAll().subscribe(result => {
       this.apartments = result;
-      this.headArray = Object.keys(this.apartments[0]).slice(1);
     },
       error => console.error(error));
   }

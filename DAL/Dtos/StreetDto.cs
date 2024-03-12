@@ -2,8 +2,8 @@
 {
     public class StreetDto : LocationDto
     {
-        public int CityId { get; set; }
+        public CityDto City { get; set; }
 
-        public int ApartmentId { get; set; }
+        public IEnumerable<ApartmentDto> Apartments { get; set; }
     }
 }

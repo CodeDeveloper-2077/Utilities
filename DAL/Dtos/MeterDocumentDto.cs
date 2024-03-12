@@ -8,6 +8,6 @@ namespace DAL.Dtos
 
         public byte[]? Body { get; set; }
 
-        public int ApartmentId { get; set; }
+        public ApartmentDto Apartment { get; set; }
     }
 }
