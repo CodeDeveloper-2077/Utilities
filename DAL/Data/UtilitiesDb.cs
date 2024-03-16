@@ -9,7 +9,7 @@ namespace Utilities.Data
         public UtilitiesDb(DbContextOptions<UtilitiesDb> options)
             : base(options)
         {
-
+            this.ChangeTracker.LazyLoadingEnabled = true;
         }
 
         public virtual DbSet<Apartment> Apartments { get; set; }
@@ -19,6 +19,13 @@ namespace Utilities.Data
         public virtual DbSet<MeterLocation> MeterLocations { get; set; }
 
         public virtual DbSet<MeterDocument> MeterDocuments { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+
+            optionsBuilder.UseLazyLoadingProxies();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

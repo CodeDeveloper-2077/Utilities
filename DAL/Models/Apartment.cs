@@ -20,13 +20,13 @@ namespace Utilities.Models
 
         public string? ReceiptCode { get; set; }
 
-        public MeterDocument? MeterDocument { get; set; }
+        public virtual MeterDocument? MeterDocument { get; set; }
 
         public int StreetId { get; set; }
 
-        public Street? Street { get; set; }
+        public virtual Street? Street { get; set; }
 
-        public IEnumerable<Meter> Meters;
+        public virtual IEnumerable<Meter> Meters { get; set; }
 
         public Apartment()
         {

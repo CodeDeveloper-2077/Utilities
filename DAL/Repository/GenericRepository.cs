@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
+using System.Linq.Expressions;
 using Utilities.Data;
 
 namespace DAL.Repository
@@ -52,6 +54,11 @@ namespace DAL.Repository
             {
                 _dbSet.Update(entity);
             });
+        }
+
+        public IIncludableQueryable<TEntity, TProperty> Include<TProperty>(Expression<Func<TEntity, TProperty>> navigationProperty)
+        {
+            return _dbSet.Include(navigationProperty);
         }
 
         public async Task<int> SaveAsync()

@@ -7,7 +7,5 @@ namespace DAL.Dtos
         public int Id { get; set; }
 
         public byte[]? Body { get; set; }
-
-        public ApartmentDto Apartment { get; set; }
     }
 }

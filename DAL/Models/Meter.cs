@@ -14,8 +14,8 @@
 
         public int ApartmentId { get; set; }
 
-        public Apartment? Apartment { get; set; }
+        public virtual Apartment? Apartment { get; set; }
 
-        public MeterLocation? MeterLocation { get; set; }
+        public virtual MeterLocation? MeterLocation { get; set; }
     }
 }

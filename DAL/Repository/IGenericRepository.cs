@@ -1,4 +1,7 @@
-﻿namespace DAL.Repository
+﻿using Microsoft.EntityFrameworkCore.Query;
+using System.Linq.Expressions;
+
+namespace DAL.Repository
 {
     public interface IGenericRepository<TEntity> : IDisposable
     {
@@ -9,5 +12,7 @@
         Task DeleteAsync(int entityId);
         Task UpdateAsync(TEntity entity);
         Task<int> SaveAsync();
+
+        IIncludableQueryable<TEntity, TProperty> Include<TProperty>(Expression<Func<TEntity, TProperty>>? navigationProperty);
     }
 }

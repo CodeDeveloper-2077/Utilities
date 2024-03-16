@@ -16,9 +16,9 @@ namespace DAL.Models
         [ForeignKey("Country")]
         public int CountryId { get; set; }
 
-        public Country? Country { get; set; }
+        public virtual Country? Country { get; set; }
 
-        public IEnumerable<City> Cities { get; set; }
+        public virtual IEnumerable<City> Cities { get; set; }
 
         public Area()
         {

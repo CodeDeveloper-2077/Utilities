@@ -13,8 +13,8 @@ namespace DAL.Models
         [ForeignKey("City")]
         public int CityId { get; set; }
 
-        public City? City { get; set; }
+        public virtual City? City { get; set; }
 
-        public IEnumerable<Apartment>? Apartments { get; set; }
+        public virtual IEnumerable<Apartment>? Apartments { get; set; }
     }
 }

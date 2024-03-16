@@ -20,8 +20,6 @@
 
         public MeterDocumentDto MeterDocument { get; set; }
 
-        public StreetDto Street { get; set; }
-
-        public IEnumerable<MeterDto> Meters;
+        public IEnumerable<MeterDto> Meters { get; set; }
     }
 }

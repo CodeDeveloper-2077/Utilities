@@ -12,9 +12,9 @@ namespace DAL.Models
         [ForeignKey("Area")]
         public int AreaId { get; set; }
 
-        public Area? Area { get; set; }
+        public virtual Area? Area { get; set; }
 
-        public IEnumerable<Street> Streets { get; set; }
+        public virtual IEnumerable<Street> Streets { get; set; }
 
         public City()
         {

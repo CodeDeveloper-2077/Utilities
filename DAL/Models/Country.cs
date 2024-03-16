@@ -8,7 +8,7 @@ namespace DAL.Models
 {
     public class Country : Location
     {
-        public IEnumerable<Area> Areas { get; set; }
+        public virtual IEnumerable<Area> Areas { get; set; }
 
         public Country()
         {

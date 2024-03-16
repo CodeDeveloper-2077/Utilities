@@ -12,8 +12,6 @@
 
         public DateTime NextCheckDate { get; set; }
 
-        public ApartmentDto Apartment { get; set; }
-
         public MeterLocationDto MeterLocation { get; set; }
     }
 }
