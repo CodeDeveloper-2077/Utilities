@@ -56,11 +56,6 @@ namespace DAL.Repository
             });
         }
 
-        public IIncludableQueryable<TEntity, TProperty> Include<TProperty>(Expression<Func<TEntity, TProperty>> navigationProperty)
-        {
-            return _dbSet.Include(navigationProperty);
-        }
-
         public async Task<int> SaveAsync()
         {
             return await _context.SaveChangesAsync();

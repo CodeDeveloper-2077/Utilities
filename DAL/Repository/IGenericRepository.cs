@@ -12,7 +12,5 @@ namespace DAL.Repository
         Task DeleteAsync(int entityId);
         Task UpdateAsync(TEntity entity);
         Task<int> SaveAsync();
-
-        IIncludableQueryable<TEntity, TProperty> Include<TProperty>(Expression<Func<TEntity, TProperty>>? navigationProperty);
     }
 }

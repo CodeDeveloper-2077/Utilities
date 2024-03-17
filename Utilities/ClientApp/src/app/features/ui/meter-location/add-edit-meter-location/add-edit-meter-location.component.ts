@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./add-edit-meter-location.component.css']
 })
 export class AddEditMeterLocationComponent {
-  public meterLocationFormFields: string[] = ['name', 'meterId'];
+  public meterLocationFormFields: string[] = ['name'];
   public entityType: string = "meter-location";
   constructor(@Inject('meterLocationService') protected meterLocationService: GenericRestService<MeterLocation>) { }
 }

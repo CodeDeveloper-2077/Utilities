@@ -1,4 +1,3 @@
-import { Apartment } from "./Apartment";
 import { MeterLocation } from "./MeterLocation";
 
 export interface Meter {
@@ -7,6 +6,5 @@ export interface Meter {
     meterNumber: string;
     prevCheckDate: Date;
     nextCheckDate: Date;
-    apartment: Apartment;
     meterLocation: MeterLocation;
 }

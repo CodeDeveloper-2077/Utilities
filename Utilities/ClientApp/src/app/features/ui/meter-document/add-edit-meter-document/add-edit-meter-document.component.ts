@@ -8,7 +8,7 @@ import { GenericRestService } from 'src/app/core/services/generic-rest.service';
   styleUrls: ['./add-edit-meter-document.component.css']
 })
 export class AddEditMeterDocumentComponent {
-  public meterDocumentFormFields: string[] = ['apartmentId', 'body'];
+  public meterDocumentFormFields: string[] = ['body'];
   public entityType: string = "meter-document";
   constructor(@Inject('meterDocumentService') protected meterDocumentService: GenericRestService<MeterDocument>) { }
 }

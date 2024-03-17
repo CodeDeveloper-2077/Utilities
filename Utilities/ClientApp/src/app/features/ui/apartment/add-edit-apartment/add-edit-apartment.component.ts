@@ -8,7 +8,7 @@ import { GenericRestService } from 'src/app/core/services/generic-rest.service';
   styleUrls: ['./add-edit-apartment.component.css']
 })
 export class AddEditApartmentComponent {
-  public apartmentFormFields: string[] = ['relatedFamily', 'registeredCountPeople', 'apartmentNumber', 'houseNumber', 'buildingNumber', 'entranceNumber', 'receiptCode', 'meterDocumentId', 'locationId'];
+  public apartmentFormFields: string[] = ['relatedFamily', 'registeredCountPeople', 'apartmentNumber', 'houseNumber', 'buildingNumber', 'entranceNumber', 'receiptCode'];
   
   public entityType: string = "apartment";
   constructor(@Inject('apartmentService') protected apartmentService: GenericRestService<Apartment>) { }

@@ -2,29 +2,5 @@
 
 <p>Below you can see the list of all apartments.</p>
 
-<table class='table table-striped'>
-    <thead>
-        <tr>
-            <th>Related family</th>
-            <th>People count</th>
-            <th>Apartment number</th>
-            <th>House number</th>
-            <th>Building number</th>
-            <th>Entrance number</th>
-            <th>Receipt code</th>
-            <th>Street</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let apartment of apartments">
-            <td>{{apartment.relatedFamily}}</td>
-            <td>{{apartment.registeredCountPeople}}</td>
-            <td>{{apartment.apartmentNumber}}</td>
-            <td>{{apartment.houseNumber}}</td>
-            <td>{{apartment.buildingNumber}}</td>
-            <td>{{apartment.entranceNumber}}</td>
-            <td>{{apartment.receiptCode}}</td>
-            <td>{{apartment.street.name}}</td>
-        </tr>
-    </tbody>
-</table>
+
+<app-data-grid [headArray]="headArray" [dataArray]="apartments" [entityType]="entityType" [genericRestService]="apartmentService"></app-data-grid>

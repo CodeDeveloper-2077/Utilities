@@ -8,7 +8,7 @@ import { GenericRestService } from 'src/app/core/services/generic-rest.service';
   styleUrls: ['./add-edit-street.component.css']
 })
 export class AddEditStreetComponent {
-  public streetFormFields: string[] = ['name', 'cityId', 'apartmentId'];
+  public streetFormFields: string[] = ['name'];
   public entityType: string = "street";
   constructor(@Inject('streetService') protected streetService: GenericRestService<Street>) { }
 }

@@ -9,7 +9,7 @@ import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 })
 export class ApartmentTableComponent implements OnInit {
   protected entityType: string = "apartment";
-  public headArray: string[] = [];
+  public headArray: string[] = ['id', 'relatedFamily', 'registeredCountPeople', 'apartmentNumber', 'houseNumber', 'buildingNumber', 'entranceNumber', 'receiptCode'];
   public apartments: Apartment[] = [];
   
   constructor(@Inject('apartmentService') protected readonly apartmentService: GenericRestService<Apartment>) { }

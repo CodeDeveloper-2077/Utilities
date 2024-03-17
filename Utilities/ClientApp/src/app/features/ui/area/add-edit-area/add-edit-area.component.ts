@@ -8,7 +8,7 @@ import { GenericRestService } from 'src/app/core/services/generic-rest.service';
   styleUrls: ['./add-edit-area.component.css']
 })
 export class AddEditAreaComponent {
-  public areaFormFields: string[] = ['countryId', 'name'];
+  public areaFormFields: string[] = ['name'];
   
   public entityType: string = "area";
   constructor(@Inject('areaService') protected areaService: GenericRestService<Area>) { }

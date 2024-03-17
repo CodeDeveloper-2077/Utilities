@@ -9,7 +9,7 @@ import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 })
 export class MeterDocumentTableComponent implements OnInit {
   protected entityType: string = "meter-document";
-  public headArray: string[] = ['apartmentId', 'body'];
+  public headArray: string[] = ['id', 'body'];
   public meterDocuments: MeterDocument[] = [];
   
   constructor(@Inject('meterDocumentService') protected readonly meterDocumentService: GenericRestService<MeterDocument>) { }

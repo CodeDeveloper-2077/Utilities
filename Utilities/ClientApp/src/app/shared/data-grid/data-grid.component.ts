@@ -4,11 +4,11 @@ import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 import { StringConverterService } from 'src/app/core/services/string-converter.service';
 
 @Component({
-  selector: 'app-datagrid',
-  templateUrl: './datagrid.component.html',
-  styleUrls: ['./datagrid.component.css']
+  selector: 'app-data-grid',
+  templateUrl: './data-grid.component.html',
+  styleUrls: ['./data-grid.component.css']
 })
-export class DatagridComponent {
+export class DataGridComponent {
   @Input() public  genericRestService: GenericRestService<any>;
   @Input() public headArray: string[];
   @Input() public dataArray: any[];
