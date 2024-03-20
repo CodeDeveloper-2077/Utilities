@@ -2,6 +2,6 @@
 {
     public class AreaDto : LocationDto
     {
-        public IEnumerable<CityDto> Cities { get; set; }
+        public IEnumerable<CityDto>? Cities { get; set; }
     }
 }

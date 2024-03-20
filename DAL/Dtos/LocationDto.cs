@@ -1,4 +1,6 @@
-﻿namespace DAL.Dtos
+﻿using System.Text.Json.Serialization;
+
+namespace DAL.Dtos
 {
     public class LocationDto
     {

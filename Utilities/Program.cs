@@ -1,6 +1,8 @@
+using DAL.Models;
 using DAL.Profiles;
 using DAL.UnitOfWork;
 using LoggerService;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NLog.Extensions.Logging;
 using Utilities.Data;
@@ -37,6 +39,8 @@ builder.Services.AddDbContext<UtilitiesDb>(options =>
 {
     options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=UtilitiesDb;Integrated Security=True;");
 });
+builder.Services.AddIdentity<User, IdentityRole>()
+       .AddEntityFrameworkStores<UtilitiesDb>();
 
 builder.Services.AddTransient<UnitOfWork>();
 

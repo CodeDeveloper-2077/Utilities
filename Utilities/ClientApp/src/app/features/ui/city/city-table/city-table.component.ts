@@ -8,7 +8,7 @@ import { GenericRestService } from 'src/app/core/services/generic-rest.service';
   styleUrls: ['./city-table.component.css']
 })
 export class CityTableComponent implements OnInit {
-  protected entityType: string = "city";
+  protected entityType: string = "citie";
   public headArray: string[] = ['id', 'name'];
   public cities: City[] = [];
   

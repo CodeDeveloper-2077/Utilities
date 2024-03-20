@@ -8,6 +8,7 @@ import { GenericRestService } from 'src/app/core/services/generic-rest.service';
   styleUrls: ['./add-edit-apartment.component.css']
 })
 export class AddEditApartmentComponent {
+  public isNewDiv: boolean = false;
   public apartmentFormFields: string[] = ['relatedFamily', 'registeredCountPeople', 'apartmentNumber', 'houseNumber', 'buildingNumber', 'entranceNumber', 'receiptCode'];
   
   public entityType: string = "apartment";

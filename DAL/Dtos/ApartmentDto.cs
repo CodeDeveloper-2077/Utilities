@@ -18,8 +18,8 @@
 
         public string? ReceiptCode { get; set; }
 
-        public MeterDocumentDto MeterDocument { get; set; }
+        public MeterDocumentDto? MeterDocument { get; set; }
 
-        public IEnumerable<MeterDto> Meters { get; set; }
+        public IEnumerable<MeterDto>? Meters { get; set; }
     }
 }

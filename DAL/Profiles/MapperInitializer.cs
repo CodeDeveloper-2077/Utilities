@@ -18,6 +18,9 @@ namespace DAL.Profiles
             CreateMap<Street, StreetDto>().ReverseMap();
             CreateMap<MeterDocument, MeterDocumentDto>().ReverseMap();
             CreateMap<MeterLocation, MeterLocationDto>().ReverseMap();
+
+            CreateMap<UserForRegistrationDto, User>()
+                .ForMember(u => u.UserName, opt => opt.MapFrom(x => x.Email));
         }
     }
 }

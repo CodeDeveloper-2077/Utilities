@@ -1,10 +1,12 @@
 ﻿using DAL.Configurations;
+using DAL.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Utilities.Models;
 
 namespace Utilities.Data
 {
-    public class UtilitiesDb : DbContext
+    public class UtilitiesDb : IdentityDbContext<User>
     {
         public UtilitiesDb(DbContextOptions<UtilitiesDb> options)
             : base(options)

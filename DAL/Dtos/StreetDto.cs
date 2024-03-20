@@ -1,7 +1,10 @@
-﻿namespace DAL.Dtos
+﻿using System.Text.Json.Serialization;
+
+namespace DAL.Dtos
 {
     public class StreetDto : LocationDto
     {
-        public IEnumerable<ApartmentDto> Apartments { get; set; }
+        [JsonIgnore]
+        public IEnumerable<ApartmentDto>? Apartments { get; set; }
     }
 }

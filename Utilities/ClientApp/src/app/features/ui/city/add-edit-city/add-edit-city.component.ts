@@ -10,6 +10,6 @@ import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 export class AddEditCityComponent {
   public cityFormFields: string[] = ['name'];
   
-  public entityType: string = "city";
+  public entityType: string = "citie";
   constructor(@Inject('cityService') protected cityService: GenericRestService<City>) { }
 }

@@ -12,6 +12,6 @@
 
         public DateTime NextCheckDate { get; set; }
 
-        public MeterLocationDto MeterLocation { get; set; }
+        public MeterLocationDto? MeterLocation { get; set; }
     }
 }
