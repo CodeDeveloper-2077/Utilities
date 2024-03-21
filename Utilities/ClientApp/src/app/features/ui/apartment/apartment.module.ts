@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { routes } from './apartment.routes';
 import { AddEditApartmentComponent } from './add-edit-apartment/add-edit-apartment.component';
 import { GenericRestService } from 'src/app/core/services/generic-rest.service';
-import { Apartment } from 'src/app/Models/Apartment';
+import { Apartment } from 'src/app/shared/Models/Apartment';
 import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
 
 

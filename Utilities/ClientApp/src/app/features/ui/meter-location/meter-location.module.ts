@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddEditMeterLocationComponent } from './add-edit-meter-location/add-edit-meter-location.component';
 import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
 import { GenericRestService } from 'src/app/core/services/generic-rest.service';
-import { MeterLocation } from 'src/app/Models/MeterLocation';
+import { MeterLocation } from 'src/app/shared/Models/MeterLocation';
 
 @NgModule({
   declarations: [

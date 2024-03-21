@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { routes } from './city.routes';
 import { HttpClient } from '@angular/common/http';
 import { GenericRestService } from 'src/app/core/services/generic-rest.service';
-import { City } from 'src/app/Models/City';
+import { City } from 'src/app/shared/Models/City';
 import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
 
 

@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { routes } from './area.routes';
 import { GenericRestService } from 'src/app/core/services/generic-rest.service';
-import { Area } from 'src/app/Models/Area';
+import { Area } from 'src/app/shared/Models/Area';
 import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
 
 

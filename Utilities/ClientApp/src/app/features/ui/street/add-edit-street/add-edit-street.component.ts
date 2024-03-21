@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Street } from 'src/app/Models/Street';
+import { Street } from 'src/app/shared/Models/Street';
 import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 
 @Component({

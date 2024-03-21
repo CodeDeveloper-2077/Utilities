@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { routes } from './meter-document.routes';
 import { HttpClient } from '@angular/common/http';
 import { GenericRestService } from 'src/app/core/services/generic-rest.service';
-import { MeterDocument } from 'src/app/Models/MeterDocument';
+import { MeterDocument } from 'src/app/shared/Models/MeterDocument';
 import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
 
 

@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { NavMenuComponent } from './core/components/nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { MeterLocationModule } from './features/ui/meter-location/meter-location.module';
 import { ApartmentModule } from './features/ui/apartment/apartment.module';
@@ -15,6 +15,7 @@ import { CountryModule } from './features/ui/country/country.module';
 import { MeterDocumentModule } from './features/ui/meter-document/meter-document.module';
 import { MeterModule } from './features/ui/meter/meter.module';
 import { StreetModule } from './features/ui/street/street.module';
+import { AuthenticationModule } from './features/authentication/authentication.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { StreetModule } from './features/ui/street/street.module';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      {  path: 'authentication', loadChildren: () => import('./features/authentication/authentication.module').then(m => m.AuthenticationModule) }
     ]),
     MeterLocationModule,
     ApartmentModule,
@@ -36,7 +38,8 @@ import { StreetModule } from './features/ui/street/street.module';
     CountryModule,
     MeterDocumentModule,
     MeterModule,
-    StreetModule
+    StreetModule,
+    AuthenticationModule
   ],
   providers: [],
   bootstrap: [AppComponent],

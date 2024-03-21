@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Meter } from 'src/app/Models/Meter';
+import { Meter } from 'src/app/shared/Models/Meter';
 import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 
 @Component({
