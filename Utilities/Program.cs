@@ -39,7 +39,13 @@ builder.Services.AddDbContext<UtilitiesDb>(options =>
 {
     options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=UtilitiesDb;Integrated Security=True;");
 });
-builder.Services.AddIdentity<User, IdentityRole>()
+builder.Services.AddIdentity<User, IdentityRole>(options =>
+{
+    options.Password.RequiredLength = 7;
+    options.Password.RequireNonAlphanumeric = false;
+
+    options.User.RequireUniqueEmail = true;
+})
        .AddEntityFrameworkStores<UtilitiesDb>();
 
 builder.Services.AddTransient<UnitOfWork>();

@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GenericRestService } from 'src/app/core/services/generic-rest.service';
-import { StringConverterService } from 'src/app/core/services/string-converter.service';
+import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
+import { StringConverterService } from 'src/app/shared/services/string-converter.service';
 
 @Component({
   selector: 'app-add-edit-form',

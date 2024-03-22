@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { GenericRestService } from 'src/app/core/services/generic-rest.service';
+import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
 import { MeterLocation } from 'src/app/shared/Models/MeterLocation';
 import { ActivatedRoute, Router } from '@angular/router';
 

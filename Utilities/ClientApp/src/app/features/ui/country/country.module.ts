@@ -5,7 +5,7 @@ import { CountryTableComponent } from './country-table/country-table.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './country.routes';
 import { HttpClient } from '@angular/common/http';
-import { GenericRestService } from 'src/app/core/services/generic-rest.service';
+import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
 import { Country } from 'src/app/shared/Models/Country';
 import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
 

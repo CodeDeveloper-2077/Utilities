@@ -5,7 +5,7 @@ import { AddEditMeterComponent } from './add-edit-meter/add-edit-meter.component
 import { RouterModule } from '@angular/router';
 import { routes } from './meter.routes';
 import { HttpClient } from '@angular/common/http';
-import { GenericRestService } from 'src/app/core/services/generic-rest.service';
+import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
 import { Meter } from 'src/app/shared/Models/Meter';
 import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
 

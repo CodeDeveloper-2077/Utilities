@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -16,6 +16,7 @@ import { MeterDocumentModule } from './features/ui/meter-document/meter-document
 import { MeterModule } from './features/ui/meter/meter.module';
 import { StreetModule } from './features/ui/street/street.module';
 import { AuthenticationModule } from './features/authentication/authentication.module';
+import { ErrorHandlerService } from './shared/services/error-handler.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,12 @@ import { AuthenticationModule } from './features/authentication/authentication.m
     StreetModule,
     AuthenticationModule
   ],
-  providers: [],
+  providers: [
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorHandlerService,
+    multi: true
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

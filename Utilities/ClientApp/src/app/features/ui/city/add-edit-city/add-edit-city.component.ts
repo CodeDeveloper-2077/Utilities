@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { City } from 'src/app/shared/Models/City';
-import { GenericRestService } from 'src/app/core/services/generic-rest.service';
+import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
 
 @Component({
   selector: 'app-add-edit-city',

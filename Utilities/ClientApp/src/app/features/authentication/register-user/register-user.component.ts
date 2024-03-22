@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { UserForRegistrationDto } from 'src/app/shared/Models/UserForRegistration';
+import { PasswordConfirmationValidatorService } from 'src/app/shared/custom-validators/password-confirmation-validator.service';
 
 @Component({
   selector: 'app-register-user',
@@ -11,8 +12,10 @@ import { UserForRegistrationDto } from 'src/app/shared/Models/UserForRegistratio
 })
 export class RegisterUserComponent implements OnInit {
   public registerForm: FormGroup;
+  public errorMessage: string;
+  public showError: boolean;
 
-  constructor(private readonly authService: AuthenticationService, private readonly fb: FormBuilder) { }
+  constructor(private readonly authService: AuthenticationService, private readonly fb: FormBuilder, private readonly passwdConfirmValidator: PasswordConfirmationValidatorService) { }
 
   public ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -22,6 +25,9 @@ export class RegisterUserComponent implements OnInit {
       password: ['', [Validators.required]],
       confirm: ['']
     });
+
+    this.registerForm.get('confirm').setValidators([Validators.required,
+      this.passwdConfirmValidator.validateConfirmPassword(this.registerForm.get('password'))]);
   }
 
   public validateControl(control: string): boolean {
@@ -33,6 +39,7 @@ export class RegisterUserComponent implements OnInit {
   }
 
   public registerUser(registerFormValue): void {
+    this.showError = false;
     let formValues = { ... registerFormValue };
 
     let user: UserForRegistrationDto = {
@@ -45,7 +52,11 @@ export class RegisterUserComponent implements OnInit {
 
     this.authService.registerUser('api/Accounts/Registration', user).subscribe({
       next: () => console.log("Successful Registration."),
-      error: (error: HttpErrorResponse) => console.error(error.error.errors)
+      error: (error: HttpErrorResponse) => {
+        this.errorMessage = error.message;
+        console.log(this.errorMessage);
+        this.showError = true;
+      }
     });
   }
 }
