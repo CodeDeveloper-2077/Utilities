@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { UserForRegistrationDto } from 'src/app/shared/Models/UserForRegistration';
 import { PasswordConfirmationValidatorService } from 'src/app/shared/custom-validators/password-confirmation-validator.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-user',
@@ -15,7 +16,7 @@ export class RegisterUserComponent implements OnInit {
   public errorMessage: string;
   public showError: boolean;
 
-  constructor(private readonly authService: AuthenticationService, private readonly fb: FormBuilder, private readonly passwdConfirmValidator: PasswordConfirmationValidatorService) { }
+  constructor(private readonly authService: AuthenticationService, private readonly fb: FormBuilder, private readonly router: Router, private readonly passwdConfirmValidator: PasswordConfirmationValidatorService) { }
 
   public ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -51,7 +52,7 @@ export class RegisterUserComponent implements OnInit {
     };
 
     this.authService.registerUser('api/Accounts/Registration', user).subscribe({
-      next: () => console.log("Successful Registration."),
+      next: () => this.router.navigate(['/login']),
       error: (error: HttpErrorResponse) => {
         this.errorMessage = error.message;
         console.log(this.errorMessage);

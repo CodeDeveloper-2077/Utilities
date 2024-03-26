@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NLog.Extensions.Logging;
 using Utilities.Data;
+using Utilities.JwtFeatures;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,6 +50,7 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
        .AddEntityFrameworkStores<UtilitiesDb>();
 
 builder.Services.AddTransient<UnitOfWork>();
+builder.Services.AddScoped<JwtHandler>();
 
 var app = builder.Build();
 

@@ -1,0 +1,32 @@
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">Login</h1>
+
+        <div *ngIf="showError" class="alert alert-danger" role="alert">
+            {{errorMessage}}
+        </div>
+
+        <form method="post" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+            <div class="mb-3 row">
+                <label for="user-name" class="col-form-label col-sm-2">User Name: </label>
+                <input id="user-name" type="email" formControlName="username" class="col-md-5" />
+                <div class="col-md-5">
+                    <em *ngIf="validateControl('username') && hasError('username', 'required')">Username is required</em>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label for="password" class="col-form-label col-sm-2">Password: </label>
+                <input id="password" type="password" formControlName="password" class="col-md-5" />
+                <div class="col-md-5">
+                    <em *ngIf="validateControl('password') && hasError('password', 'required')">Password is required</em>
+                </div>
+            </div>
+            <br />
+
+            <button type="submit" [disabled]="!loginForm.valid">Submit</button>
+        </form>
+        
+        <hr />
+    </div>
+</div>
