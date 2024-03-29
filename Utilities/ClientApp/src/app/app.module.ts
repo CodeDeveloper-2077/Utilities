@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './core/components/nav-menu/nav-menu.component';
@@ -17,6 +18,24 @@ import { MeterModule } from './features/ui/meter/meter.module';
 import { StreetModule } from './features/ui/street/street.module';
 import { AuthenticationModule } from './features/authentication/authentication.module';
 import { ErrorHandlerService } from './shared/services/error-handler.service';
+import { AuthGuard } from './core/guards/auth.guard';
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
+
+const routes: Routes = [
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'authentication', loadChildren: () => import('./features/authentication/authentication.module').then(m => m.AuthenticationModule) },
+  { path: 'apartments', loadChildren: () => import('./features/ui/apartment/apartment.module').then(m => m.ApartmentModule), canActivate: [AuthGuard] },
+  { path: 'areas', loadChildren: () => import('./features/ui/area/area.module').then(m => m.AreaModule), canActivate: [AuthGuard] },
+  { path: 'cities', loadChildren: () => import('./features/ui/city/city.module').then(m => m.CityModule), canActivate: [AuthGuard] },
+  { path: 'countries', loadChildren: () => import('./features/ui/country/country.module').then(m => m.CountryModule), canActivate: [AuthGuard] },
+  { path: 'meters', loadChildren: () => import('./features/ui/meter/meter.module').then(m => m.MeterModule), canActivate: [AuthGuard] },
+  { path: 'meterDocuments', loadChildren: () => import('./features/ui/meter-document/meter-document.module').then(m => m.MeterDocumentModule), canActivate: [AuthGuard] },
+  { path: 'meterLocations', loadChildren: () => import('./features/ui/meter-location/meter-location.module').then(m => m.MeterLocationModule), canActivate: [AuthGuard] },
+  { path: 'streets', loadChildren: () => import('./features/ui/street/street.module').then(m => m.StreetModule), canActivate: [AuthGuard] }
+];
 
 @NgModule({
   declarations: [
@@ -28,19 +47,14 @@ import { ErrorHandlerService } from './shared/services/error-handler.service';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      {  path: 'authentication', loadChildren: () => import('./features/authentication/authentication.module').then(m => m.AuthenticationModule) }
-    ]),
-    MeterLocationModule,
-    ApartmentModule,
-    AreaModule,
-    CityModule,
-    CountryModule,
-    MeterDocumentModule,
-    MeterModule,
-    StreetModule,
-    AuthenticationModule
+    RouterModule.forRoot(routes),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:44415"],
+        disallowedRoutes: []
+      }
+    }),
   ],
   providers: [
   {

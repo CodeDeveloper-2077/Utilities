@@ -31,6 +31,7 @@ import { GenericComponentsModule } from 'src/app/shared/generic-components.modul
     CommonModule,
     GenericComponentsModule,
     RouterModule.forChild(routes)
-  ]
+  ],
+  exports: [RouterModule]
 })
 export class ApartmentModule { }

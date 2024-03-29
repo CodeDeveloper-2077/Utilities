@@ -35,6 +35,7 @@ namespace Utilities.Data
 
             modelBuilder.ApplyConfiguration(new MeterConfiguration());
             modelBuilder.ApplyConfiguration(new ApartmentConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
     }
 }

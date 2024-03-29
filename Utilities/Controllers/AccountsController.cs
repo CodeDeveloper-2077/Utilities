@@ -41,6 +41,8 @@ namespace Utilities.Controllers
                 return BadRequest(new RegistrationResponseDto() { Errors = errors });
             }
 
+            await _userManager.AddToRoleAsync(user, "Viewer");
+
             return StatusCode(201);
         }
 
@@ -55,7 +57,7 @@ namespace Utilities.Controllers
             }
 
             var signingCredentials = _jwtHandler.GetSigningCredentials();
-            var claims = _jwtHandler.GetClaims(user);
+            var claims = await _jwtHandler.GetClaims(user);
             var tokenOptions = _jwtHandler.GenerateTokenOptions(signingCredentials, claims);
             var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
             return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token });
