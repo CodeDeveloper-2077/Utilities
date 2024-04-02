@@ -17,16 +17,5 @@ namespace Utilities.Controllers
         {
 
         }
-
-        [HttpGet("Privacy")]
-        [Authorize]
-        public IActionResult Privacy()
-        {
-            var claims = User.Claims
-                .Select(c => new { c.Type, c.Value })
-                .ToList();
-
-            return Ok(claims);
-        }
     }
 }

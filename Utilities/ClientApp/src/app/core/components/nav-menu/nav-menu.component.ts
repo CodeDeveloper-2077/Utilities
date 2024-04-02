@@ -7,13 +7,11 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.css']
 })
-export class NavMenuComponent implements DoCheck {
+export class NavMenuComponent {
   public isUserAuthenticated: boolean = false;
   isExpanded = false;
 
-  constructor(private readonly authService: AuthenticationService, private readonly router: Router) { }
-
-  public ngDoCheck(): void {
+  constructor(private readonly authService: AuthenticationService, private readonly router: Router) {
     this.authService.authChanged.subscribe({
       next: (response) => {
         this.isUserAuthenticated = response;

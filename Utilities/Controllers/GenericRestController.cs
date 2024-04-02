@@ -67,6 +67,17 @@ namespace Utilities.Controllers
             }
         }
 
+        [HttpGet("Privacy")]
+        [Authorize (Roles = "Administrator")]
+        public IActionResult Privacy()
+        {
+            var claims = User.Claims
+                .Select(c => new { c.Type, c.Value })
+                .ToList();
+
+            return Ok(claims);
+        }
+
         [HttpPost]
         public virtual async Task<IActionResult> CreateEntity([FromBody] TEntityDto entityDto)
         {

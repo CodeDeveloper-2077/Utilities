@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { ErrorHandlerService } from './shared/services/error-handler.service';
 import { AuthGuard } from './core/guards/auth.guard';
 import { PrivacyComponent } from './features/ui/privacy/privacy.component';
+import { ForbiddenComponent } from './features/ui/forbidden/forbidden.component';
+import { AdminGuard } from './core/guards/admin.guard';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -27,7 +29,8 @@ const routes: Routes = [
   { path: 'meter-documents', loadChildren: () => import('./features/ui/meter-document/meter-document.module').then(m => m.MeterDocumentModule) },
   { path: 'meter-locations', loadChildren: () => import('./features/ui/meter-location/meter-location.module').then(m => m.MeterLocationModule) },
   { path: 'streets', loadChildren: () => import('./features/ui/street/street.module').then(m => m.StreetModule) },
-  { path: 'privacy', component: PrivacyComponent }
+  { path: 'privacy', component: PrivacyComponent, canActivate: [AuthGuard, AdminGuard]},
+  { path: 'forbidden', component: ForbiddenComponent }
 ];
 
 @NgModule({

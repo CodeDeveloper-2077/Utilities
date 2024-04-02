@@ -37,4 +37,12 @@ export class AuthenticationService {
   public sendAuthStateChangeNotification = (isAuthenticated: boolean) => {
     return this.authChangeSub.next(isAuthenticated);
   }
+
+  public isUserAdmin = (): boolean => {
+    const token = localStorage.getItem("token");
+    const decodedToken = this.jwtHelper.decodeToken(token);
+    const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+
+    return role === "Administrator";
+  }
 }
