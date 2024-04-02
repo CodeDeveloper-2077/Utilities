@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using DAL.UnitOfWork;
 using LoggerService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Utilities.Controllers
 {

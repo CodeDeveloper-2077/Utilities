@@ -2,9 +2,12 @@ using DAL.Models;
 using DAL.Profiles;
 using DAL.UnitOfWork;
 using LoggerService;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using NLog.Extensions.Logging;
+using System.Text;
 using Utilities.Data;
 using Utilities.JwtFeatures;
 
@@ -49,6 +52,26 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 })
        .AddEntityFrameworkStores<UtilitiesDb>();
 
+var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+builder.Services.AddAuthentication(opt =>
+{
+    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtSettings["validIssuer"],
+        ValidAudience = jwtSettings["validAudience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+            .GetBytes(jwtSettings.GetSection("securityKey").Value))
+    };
+});
+
 builder.Services.AddTransient<UnitOfWork>();
 builder.Services.AddScoped<JwtHandler>();
 
@@ -64,6 +87,9 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseCors("CorsPolicy");
+app.UseAuthentication();
+app.UseAuthorization();
 
 
 app.MapControllerRoute(
@@ -79,7 +105,5 @@ app.UseSwaggerUI(options =>
     options.RoutePrefix = string.Empty;
     options.DocumentTitle = "Utility Swagger";
 });
-
-app.UseCors("CorsPolicy");
 
 app.Run();
