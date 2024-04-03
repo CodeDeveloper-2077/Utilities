@@ -1,6 +1,7 @@
 using DAL.Models;
 using DAL.Profiles;
 using DAL.UnitOfWork;
+using EmailService;
 using LoggerService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -71,6 +72,12 @@ builder.Services.AddAuthentication(opt =>
             .GetBytes(jwtSettings.GetSection("securityKey").Value))
     };
 });
+
+var emailConfig = builder.Configuration
+                         .GetSection("EmailConfiguration")
+                         .Get<EmailConfiguration>();
+builder.Services.AddSingleton(emailConfig);
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 builder.Services.AddTransient<UnitOfWork>();
 builder.Services.AddScoped<JwtHandler>();

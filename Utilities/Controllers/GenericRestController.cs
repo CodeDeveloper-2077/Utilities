@@ -12,9 +12,9 @@ namespace Utilities.Controllers
     public class GenericRestController<TEntity, TEntityDto> : ControllerBase where TEntity : class 
         where TEntityDto : class
     {
-        private readonly ILoggerManager _logger;
-        private readonly UnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+        protected readonly ILoggerManager _logger;
+        protected readonly UnitOfWork _unitOfWork;
+        protected readonly IMapper _mapper;
 
         public GenericRestController(ILoggerManager logger, IMapper mapper, UnitOfWork unitOfWork)
         {
