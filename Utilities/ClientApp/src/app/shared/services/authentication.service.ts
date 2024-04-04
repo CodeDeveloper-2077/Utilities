@@ -7,6 +7,7 @@ import { AuthResponseDto } from '../Models/AuthResponse';
 import { Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ForgotPassword } from '../Models/ForgotPassword';
+import { ResetPassword } from '../Models/ResetPassword';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,10 @@ export class AuthenticationService {
   }
 
   public forgorPassword = (route: string, body: ForgotPassword) => {
+    return this.http.post(`${this.baseUrl}${route}`, body);
+  }
+
+  public resetPassword = (route: string, body: ResetPassword) => {
     return this.http.post(`${this.baseUrl}${route}`, body);
   }
 }
