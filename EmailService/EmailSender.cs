@@ -17,9 +17,16 @@ namespace EmailService
 
         public void SendEmail(Message message)
         {
-            var emailMessage = CreateEmailMessage(message);
+            var mailMessage = CreateEmailMessage(message);
 
-            Send(emailMessage);
+            Send(mailMessage);
+        }
+
+        public async Task SendEmailAsync(Message message)
+        {
+            var mailMessage = CreateEmailMessage(message);
+
+            await SendAsync(mailMessage);
         }
 
         private MimeMessage CreateEmailMessage(Message message)
@@ -53,6 +60,31 @@ namespace EmailService
                 finally
                 {
                     client.Disconnect(true);
+                    client.Dispose();
+                }
+            }
+        }
+
+        private async Task SendAsync(MimeMessage message)
+        {
+            using (var client = new SmtpClient())
+            {
+                try
+                {
+                    await client.ConnectAsync(_emailConfig.SmtpServer, _emailConfig.Port, true);
+                    client.AuthenticationMechanisms.Remove("XOAUTH2");
+                    await client.AuthenticateAsync(_emailConfig.UserName, _emailConfig.Password);
+
+                    await client.SendAsync(message);
+                }
+                catch (Exception exception)
+                {
+                    _logger.LogError(exception.Message);
+                    throw;
+                }
+                finally
+                {
+                    await client.DisconnectAsync(true);
                     client.Dispose();
                 }
             }

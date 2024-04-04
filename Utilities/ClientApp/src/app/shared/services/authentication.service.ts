@@ -6,22 +6,24 @@ import { UserForAuthenticationDto } from '../Models/UserForAuthentication';
 import { AuthResponseDto } from '../Models/AuthResponse';
 import { Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { ForgotPassword } from '../Models/ForgotPassword';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+  private readonly baseUrl = 'https://localhost:7202/';
   private readonly authChangeSub = new Subject<boolean>();
   public authChanged = this.authChangeSub.asObservable();
 
   constructor(private readonly http: HttpClient, private readonly jwtHelper: JwtHelperService) { }
 
   public registerUser = (route: string, user: UserForRegistrationDto) => {
-    return this.http.post<RegistrationResponseDto>(`https://localhost:7202/${route}`, user);
+    return this.http.post<RegistrationResponseDto>(`${this.baseUrl}${route}`, user);
   }
 
   public loginUser = (route: string, user: UserForAuthenticationDto) => {
-    return this.http.post<AuthResponseDto>(`https://localhost:7202/${route}`, user);
+    return this.http.post<AuthResponseDto>(`${this.baseUrl}${route}`, user);
   }
 
   public logoutUser = () => {
@@ -44,5 +46,9 @@ export class AuthenticationService {
     const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
 
     return role === "Administrator";
+  }
+
+  public forgorPassword = (route: string, body: ForgotPassword) => {
+    return this.http.post(`${this.baseUrl}${route}`, body);
   }
 }

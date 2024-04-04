@@ -51,7 +51,13 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 
     options.User.RequireUniqueEmail = true;
 })
-       .AddEntityFrameworkStores<UtilitiesDb>();
+       .AddEntityFrameworkStores<UtilitiesDb>()
+       .AddDefaultTokenProviders();
+
+builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+{
+    options.TokenLifespan = TimeSpan.FromMinutes(2);
+});
 
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 builder.Services.AddAuthentication(opt =>

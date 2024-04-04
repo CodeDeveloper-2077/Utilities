@@ -1,10 +1,15 @@
 ﻿using AutoMapper;
+using Castle.Core.Smtp;
 using DAL.Dtos;
 using DAL.Models;
+using EmailService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using System.IdentityModel.Tokens.Jwt;
 using Utilities.JwtFeatures;
+
+using IEmailSender = EmailService.IEmailSender;
 
 namespace Utilities.Controllers
 {
@@ -15,12 +20,14 @@ namespace Utilities.Controllers
         private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
         private readonly JwtHandler _jwtHandler;
+        private readonly IEmailSender _emailSender;
 
-        public AccountsController(UserManager<User> userManager, IMapper mapper, JwtHandler jwtHandler)
+        public AccountsController(UserManager<User> userManager, IMapper mapper, JwtHandler jwtHandler, IEmailSender emailSender)
         {
             _userManager = userManager;
             _mapper = mapper;
             _jwtHandler = jwtHandler;
+            _emailSender = emailSender;
         }
 
         [HttpPost("Registration")]
@@ -61,6 +68,35 @@ namespace Utilities.Controllers
             var tokenOptions = _jwtHandler.GenerateTokenOptions(signingCredentials, claims);
             var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
             return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token });
+        }
+
+        [HttpPost("ForgotPassword")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto forgotPasswordDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var user = await _userManager.FindByEmailAsync(forgotPasswordDto.Email);
+            if (user is null)
+            {
+                return BadRequest("Invalid Request");
+            }
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var param = new Dictionary<string, string?>
+            {
+                { "token", token },
+                { "email", forgotPasswordDto.Email }
+            };
+
+            var callback = QueryHelpers.AddQueryString(forgotPasswordDto.ClientUri, param);
+            var message = new Message(new string[] { user.Email }, "Reset password token", callback);
+
+            await _emailSender.SendEmailAsync(message);
+
+            return Ok();
         }
     }
 }

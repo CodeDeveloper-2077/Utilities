@@ -20,13 +20,13 @@ namespace Utilities.Controllers
             _emailSender = emailSender;
         }
 
-        public override Task<IActionResult> GetAllEntities()
+        public override async Task<IActionResult> GetAllEntities()
         {
-            var message = new Message(new string[] { "oleh.shevchenko.02@gmail.com" }, "Test email", "This is the content from our email.");
-            _emailSender.SendEmail(message);
+            var message = new Message(new string[] { "oleh.shevchenko.02@gmail.com" }, "Test email async", "This is the content from our email.");
+            await _emailSender.SendEmailAsync(message);
             _logger.LogInfo("Email Sent");
 
-            return base.GetAllEntities();
+            return await base.GetAllEntities();
         }
     }
 }
