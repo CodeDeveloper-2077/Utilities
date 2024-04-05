@@ -16,5 +16,7 @@ namespace DAL.Dtos
 
         [Compare("Password", ErrorMessage = "The password and password confirmation do not match")]
         public string? PasswordConfirmation { get; set; }
+
+        public string? ClientUri { get; set; }
     }
 }

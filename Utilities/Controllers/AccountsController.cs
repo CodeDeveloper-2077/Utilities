@@ -48,6 +48,18 @@ namespace Utilities.Controllers
                 return BadRequest(new RegistrationResponseDto() { Errors = errors });
             }
 
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var param = new Dictionary<string, string>
+            {
+                { "token", token },
+                { "email", user.Email }
+            };
+
+            var callback = QueryHelpers.AddQueryString(userForRegistration.ClientUri, param);
+
+            var message = new Message(new string[] { user.Email }, "Email Confirmation Token", callback);
+            await _emailSender.SendEmailAsync(message);
+
             await _userManager.AddToRoleAsync(user, "Viewer");
 
             return StatusCode(201);
@@ -57,8 +69,17 @@ namespace Utilities.Controllers
         public async Task<IActionResult> Login([FromBody] UserForAuthenticationDto userForAuthentication)
         {
             var user = await _userManager.FindByNameAsync(userForAuthentication.Email);
+            if (user is null)
+            {
+                return BadRequest("Invalid Request");
+            }
 
-            if (user is null || !await _userManager.CheckPasswordAsync(user, userForAuthentication.Password))
+            if (!await _userManager.IsEmailConfirmedAsync(user))
+            {
+                return Unauthorized(new AuthResponseDto { ErrorMessage = "Email is not confirmed" });
+            }
+
+            if (!await _userManager.CheckPasswordAsync(user, userForAuthentication.Password))
             {
                 return Unauthorized(new AuthResponseDto { ErrorMessage = "Invalid Authentication" });
             }
@@ -119,6 +140,24 @@ namespace Utilities.Controllers
                 var errors = resetPassResult.Errors.Select(e => e.Description);
 
                 return BadRequest(new { Errors = errors });
+            }
+
+            return Ok();
+        }
+
+        [HttpGet("EmailConfirmation")]
+        public async Task<IActionResult> EmailConfirmation([FromQuery] string email, [FromQuery] string token)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user is null)
+            {
+                return BadRequest("Invalid Email Confirmation Request");
+            }
+
+            var confirmResult = await _userManager.ConfirmEmailAsync(user, token);
+            if (!confirmResult.Succeeded)
+            {
+                return BadRequest("Invalid Email Confirmation Request");
             }
 
             return Ok();
