@@ -81,6 +81,18 @@ namespace Utilities.Controllers
 
             if (!await _userManager.CheckPasswordAsync(user, userForAuthentication.Password))
             {
+                await _userManager.AccessFailedAsync(user);
+
+                if (await _userManager.IsLockedOutAsync(user))
+                {
+                    string content = $"The account has been locked out. To reset the password click this link: {userForAuthentication.ClientUri}";
+                    var message = new Message(new string[] { user.Email }, "Locked out account information", content);
+
+                    await _emailSender.SendEmailAsync(message);
+
+                    return Unauthorized(new AuthResponseDto { ErrorMessage = "The account has been locked out" });
+                }
+
                 return Unauthorized(new AuthResponseDto { ErrorMessage = "Invalid Authentication" });
             }
 
@@ -88,6 +100,9 @@ namespace Utilities.Controllers
             var claims = await _jwtHandler.GetClaims(user);
             var tokenOptions = _jwtHandler.GenerateTokenOptions(signingCredentials, claims);
             var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+
+            await _userManager.ResetAccessFailedCountAsync(user);
+
             return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token });
         }
 
@@ -141,6 +156,8 @@ namespace Utilities.Controllers
 
                 return BadRequest(new { Errors = errors });
             }
+
+            await _userManager.SetLockoutEndDateAsync(user, new DateTime(2000, 1, 1));
 
             return Ok();
         }

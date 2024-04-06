@@ -9,5 +9,7 @@ namespace DAL.Dtos
 
         [Required(ErrorMessage = "Password is required")]
         public string? Password { get; set; }
+
+        public string? ClientUri { get; set; }
     }
 }

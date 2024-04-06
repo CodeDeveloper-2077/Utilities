@@ -44,7 +44,8 @@ export class LoginComponent implements OnInit {
     let login = {  ... data };
     const userForAuth: UserForAuthenticationDto = {
       email: login.username,
-      password: login.password
+      password: login.password,
+      clientUri: "https://localhost:44444/authentication/forgotpassword"
     };
 
     this.authService.loginUser('api/accounts/login', userForAuth).subscribe({

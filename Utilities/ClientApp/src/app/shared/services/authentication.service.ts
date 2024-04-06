@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RegistrationResponseDto } from 'src/app/shared/Models/RegistrationResponseDto';
+import { RegistrationResponseDto } from 'src/app/shared/Models/RegistrationResponse';
 import { UserForRegistrationDto } from 'src/app/shared/Models/UserForRegistration';
 import { UserForAuthenticationDto } from '../Models/UserForAuthentication';
 import { AuthResponseDto } from '../Models/AuthResponse';
