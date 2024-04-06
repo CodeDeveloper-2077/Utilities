@@ -9,6 +9,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { ForgotPassword } from '../Models/ForgotPassword';
 import { ResetPassword } from '../Models/ResetPassword';
 import { CustomEncoder } from './CustomEncoder';
+import { TwoFactor } from '../Models/TwoFactor';
 
 @Injectable({
   providedIn: 'root'
@@ -64,5 +65,9 @@ export class AuthenticationService {
     params = params.append('email', email);
 
     return this.http.get(`${this.baseUrl}${route}`, { params: params });
+  }
+
+  public twoStepLogin = (route: string, body: TwoFactor) => {
+    return this.http.post<AuthResponseDto>(`${this.baseUrl}${route}`, body);
   }
 }

@@ -28,6 +28,7 @@ export class EmailConfirmationComponent implements OnInit {
     this.authService.confirmEmail('api/accounts/emailconfirmation', token, email).subscribe({
       next: () => this.showSuccess = true,
       error: (error: HttpErrorResponse) => {
+        localStorage.setItem("token", token);
         this.showError = true;
         this.errorMessage = error.message;
       }

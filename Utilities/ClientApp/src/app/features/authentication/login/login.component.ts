@@ -50,9 +50,14 @@ export class LoginComponent implements OnInit {
 
     this.authService.loginUser('api/accounts/login', userForAuth).subscribe({
       next: (response: AuthResponseDto) => {
-        localStorage.setItem("token", response.token);
-        this.authService.sendAuthStateChangeNotification(response.isAuthSuccessful);
-        this.router.navigate([this.returnUrl]);
+        if (response.is2StepVerificationRequired) {
+          this.router.navigate(['/authentication/twostepverification'], { queryParams: { returnUrl: this.returnUrl, provider: response.provider, email: userForAuth.email }});
+        }
+        else {
+          localStorage.setItem("token", response.token);
+          this.authService.sendAuthStateChangeNotification(response.isAuthSuccessful);
+          this.router.navigate([this.returnUrl]);
+        }
       },
       error: (error: HttpErrorResponse) => {
         this.errorMessage = error.message;
