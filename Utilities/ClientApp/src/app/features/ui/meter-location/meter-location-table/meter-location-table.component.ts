@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MeterLocation } from 'src/app/shared/Models/MeterLocation';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
+import { MeterLocationDto } from 'src/app/core/Models/MeterLocationDto';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 
 @Component({
   selector: 'app-meter-location-table',
@@ -10,9 +10,9 @@ import { GenericRestService } from 'src/app/shared/services/generic-rest.service
 export class MeterLocationTableComponent implements OnInit {
   protected entityType: string = "meter-location";
   public headArray: string[] = ['id', 'name'];
-  public meterLocations: MeterLocation[] = [];
+  public meterLocations: MeterLocationDto[] = [];
   
-  constructor(@Inject('meterLocationService') protected readonly meterLocationService: GenericRestService<MeterLocation>) { }
+  constructor(@Inject('meterLocationService') protected readonly meterLocationService: GenericRestService<MeterLocationDto>) { }
 
   public ngOnInit(): void {
     this.meterLocationService.getAll().subscribe(result => {

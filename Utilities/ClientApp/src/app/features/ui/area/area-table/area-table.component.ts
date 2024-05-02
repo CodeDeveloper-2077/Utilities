@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Area } from 'src/app/shared/Models/Area';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
+import { AreaDto } from 'src/app/core/Models/AreaDto';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 
 @Component({
   selector: 'app-area-table',
@@ -10,9 +10,9 @@ import { GenericRestService } from 'src/app/shared/services/generic-rest.service
 export class AreaTableComponent implements OnInit {
   protected entityType: string = "area";
   public headArray: string[] = ['id', 'name'];
-  public areas: Area[] = [];
+  public areas: AreaDto[] = [];
   
-  constructor(@Inject('areaService') protected readonly areaService: GenericRestService<Area>) { }
+  constructor(@Inject('areaService') protected readonly areaService: GenericRestService<AreaDto>) { }
 
   public ngOnInit(): void {
     this.areaService.getAll().subscribe(result => {

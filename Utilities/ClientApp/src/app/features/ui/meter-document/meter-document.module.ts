@@ -5,8 +5,8 @@ import { AddEditMeterDocumentComponent } from './add-edit-meter-document/add-edi
 import { RouterModule } from '@angular/router';
 import { routes } from './meter-document.routes';
 import { HttpClient } from '@angular/common/http';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
-import { MeterDocument } from 'src/app/shared/Models/MeterDocument';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
+import { MeterDocumentDto } from 'src/app/core/Models/MeterDocumentDto';
 import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
 
 
@@ -20,7 +20,7 @@ import { GenericComponentsModule } from 'src/app/shared/generic-components.modul
     {
       provide: 'meterDocumentService',
       useFactory: (http: HttpClient) => {
-        return new GenericRestService<MeterDocument>(http, {
+        return new GenericRestService<MeterDocumentDto>(http, {
           resourceEndpoint: 'api/MeterDocument'
         })
       },

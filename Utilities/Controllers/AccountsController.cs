@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 using Utilities.JwtFeatures;
 
 using IEmailSender = EmailService.IEmailSender;
@@ -49,6 +50,7 @@ namespace Utilities.Controllers
             }
 
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
             var param = new Dictionary<string, string>
             {
                 { "token", token },

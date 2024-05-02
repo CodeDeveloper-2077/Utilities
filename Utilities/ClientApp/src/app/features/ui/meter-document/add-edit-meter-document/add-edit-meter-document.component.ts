@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MeterDocument } from 'src/app/shared/Models/MeterDocument';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
+import { MeterDocumentDto } from 'src/app/core/Models/MeterDocumentDto';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 
 @Component({
   selector: 'app-add-edit-meter-document',
@@ -10,5 +10,5 @@ import { GenericRestService } from 'src/app/shared/services/generic-rest.service
 export class AddEditMeterDocumentComponent {
   public meterDocumentFormFields: string[] = ['body'];
   public entityType: string = "meter-document";
-  constructor(@Inject('meterDocumentService') protected meterDocumentService: GenericRestService<MeterDocument>) { }
+  constructor(@Inject('meterDocumentService') protected meterDocumentService: GenericRestService<MeterDocumentDto>) { }
 }

@@ -8,7 +8,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './core/components/nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { ErrorHandlerService } from './shared/services/error-handler.service';
+import { ErrorHandlerService } from './core/interceptors/error-handler.service';
 import { AuthGuard } from './core/guards/auth.guard';
 import { PrivacyComponent } from './features/ui/privacy/privacy.component';
 import { ForbiddenComponent } from './features/ui/forbidden/forbidden.component';

@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddEditMeterLocationComponent } from './add-edit-meter-location/add-edit-meter-location.component';
 import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
-import { MeterLocation } from 'src/app/shared/Models/MeterLocation';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
+import { MeterLocationDto } from 'src/app/core/Models/MeterLocationDto';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { MeterLocation } from 'src/app/shared/Models/MeterLocation';
     {
       provide: 'meterLocationService',
       useFactory: (http: HttpClient) => {
-        return new GenericRestService<MeterLocation>(http, {
+        return new GenericRestService<MeterLocationDto>(http, {
           resourceEndpoint: 'api/MeterLocation'
         })
       },

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Area } from 'src/app/shared/Models/Area';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
+import { AreaDto } from 'src/app/core/Models/AreaDto';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 
 @Component({
   selector: 'app-add-edit-area',
@@ -11,5 +11,5 @@ export class AddEditAreaComponent {
   public areaFormFields: string[] = ['name'];
   
   public entityType: string = "area";
-  constructor(@Inject('areaService') protected areaService: GenericRestService<Area>) { }
+  constructor(@Inject('areaService') protected areaService: GenericRestService<AreaDto>) { }
 }

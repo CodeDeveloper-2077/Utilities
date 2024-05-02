@@ -2,9 +2,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthResponseDto } from 'src/app/shared/Models/AuthResponse';
-import { UserForAuthenticationDto } from 'src/app/shared/Models/UserForAuthentication';
-import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { AuthResponseDto } from 'src/app/core/Models/AuthResponseDto';
+import { UserForAuthenticationDto } from 'src/app/core/Models/UserForAuthenticationDto';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'login',

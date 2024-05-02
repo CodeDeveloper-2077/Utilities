@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
-import { MeterLocation } from 'src/app/shared/Models/MeterLocation';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
+import { MeterLocationDto } from 'src/app/core/Models/MeterLocationDto';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -12,5 +12,5 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AddEditMeterLocationComponent {
   public meterLocationFormFields: string[] = ['name'];
   public entityType: string = "meter-location";
-  constructor(@Inject('meterLocationService') protected meterLocationService: GenericRestService<MeterLocation>) { }
+  constructor(@Inject('meterLocationService') protected meterLocationService: GenericRestService<MeterLocationDto>) { }
 }

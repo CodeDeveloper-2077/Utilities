@@ -5,8 +5,8 @@ import { AddEditAreaComponent } from './add-edit-area/add-edit-area.component';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { routes } from './area.routes';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
-import { Area } from 'src/app/shared/Models/Area';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
+import { AreaDto } from 'src/app/core/Models/AreaDto';
 import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
 
 
@@ -20,7 +20,7 @@ import { GenericComponentsModule } from 'src/app/shared/generic-components.modul
     {
       provide: 'areaService',
       useFactory: (http: HttpClient) => {
-        return new GenericRestService<Area>(http, {
+        return new GenericRestService<AreaDto>(http, {
           resourceEndpoint: 'api/Area'
         })
       },

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Street } from 'src/app/shared/Models/Street';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
+import { StreetDto } from 'src/app/core/Models/StreetDto';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 
 @Component({
   selector: 'app-add-edit-street',
@@ -10,5 +10,5 @@ import { GenericRestService } from 'src/app/shared/services/generic-rest.service
 export class AddEditStreetComponent {
   public streetFormFields: string[] = ['name'];
   public entityType: string = "street";
-  constructor(@Inject('streetService') protected streetService: GenericRestService<Street>) { }
+  constructor(@Inject('streetService') protected streetService: GenericRestService<StreetDto>) { }
 }

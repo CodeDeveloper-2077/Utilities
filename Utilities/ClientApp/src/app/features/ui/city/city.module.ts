@@ -5,8 +5,8 @@ import { AddEditCityComponent } from './add-edit-city/add-edit-city.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './city.routes';
 import { HttpClient } from '@angular/common/http';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
-import { City } from 'src/app/shared/Models/City';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
+import { CityDto } from 'src/app/core/Models/CityDto';
 import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
 
 
@@ -19,7 +19,7 @@ import { GenericComponentsModule } from 'src/app/shared/generic-components.modul
     {
       provide: 'cityService',
       useFactory: (http: HttpClient) => {
-        return new GenericRestService<City>(http, {
+        return new GenericRestService<CityDto>(http, {
           resourceEndpoint: 'api/City'
         })
       },

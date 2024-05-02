@@ -1,9 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from 'src/app/shared/services/authentication.service';
-import { UserForRegistrationDto } from 'src/app/shared/Models/UserForRegistration';
-import { PasswordConfirmationValidatorService } from 'src/app/shared/custom-validators/password-confirmation-validator.service';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { UserForRegistrationDto } from 'src/app/core/Models/UserForRegistrationDto';
+import { PasswordConfirmationValidatorService } from 'src/app/core/services/password-confirmation-validator.service';
 import { Router } from '@angular/router';
 
 @Component({

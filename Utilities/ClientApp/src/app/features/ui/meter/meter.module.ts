@@ -5,8 +5,8 @@ import { AddEditMeterComponent } from './add-edit-meter/add-edit-meter.component
 import { RouterModule } from '@angular/router';
 import { routes } from './meter.routes';
 import { HttpClient } from '@angular/common/http';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
-import { Meter } from 'src/app/shared/Models/Meter';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
+import { MeterDto } from 'src/app/core/Models/MeterDto';
 import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
 
 
@@ -20,7 +20,7 @@ import { GenericComponentsModule } from 'src/app/shared/generic-components.modul
     {
       provide: 'meterService',
       useFactory: (http: HttpClient) => {
-        return new GenericRestService<Meter>(http, {
+        return new GenericRestService<MeterDto>(http, {
           resourceEndpoint: 'api/Meter'
         })
       },

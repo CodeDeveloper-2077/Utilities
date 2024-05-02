@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
-import { StringConverterService } from 'src/app/shared/services/string-converter.service';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
+import { StringConverterService } from 'src/app/core/services/string-converter.service';
 
 @Component({
   selector: 'app-data-grid',

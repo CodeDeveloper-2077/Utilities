@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { City } from 'src/app/shared/Models/City';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
+import { CityDto } from 'src/app/core/Models/CityDto';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 
 @Component({
   selector: 'app-add-edit-city',
@@ -11,5 +11,5 @@ export class AddEditCityComponent {
   public cityFormFields: string[] = ['name'];
   
   public entityType: string = "citie";
-  constructor(@Inject('cityService') protected cityService: GenericRestService<City>) { }
+  constructor(@Inject('cityService') protected cityService: GenericRestService<CityDto>) { }
 }

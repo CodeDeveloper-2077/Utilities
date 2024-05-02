@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { City } from 'src/app/shared/Models/City';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
+import { CityDto } from 'src/app/core/Models/CityDto';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 
 @Component({
   selector: 'app-city-table',
@@ -10,9 +10,9 @@ import { GenericRestService } from 'src/app/shared/services/generic-rest.service
 export class CityTableComponent implements OnInit {
   protected entityType: string = "citie";
   public headArray: string[] = ['id', 'name'];
-  public cities: City[] = [];
+  public cities: CityDto[] = [];
   
-  constructor(@Inject('cityService') protected readonly cityService: GenericRestService<City>) { }
+  constructor(@Inject('cityService') protected readonly cityService: GenericRestService<CityDto>) { }
 
   public ngOnInit(): void {
     this.cityService.getAll().subscribe(result => {

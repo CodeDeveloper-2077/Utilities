@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RepositoryService } from 'src/app/shared/services/repository.service';
+import { RepositoryService } from 'src/app/core/services/repository.service';
 
 @Component({
   selector: 'app-privacy',

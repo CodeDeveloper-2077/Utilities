@@ -2,9 +2,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ResetPassword } from 'src/app/shared/Models/ResetPassword';
-import { PasswordConfirmationValidatorService } from 'src/app/shared/custom-validators/password-confirmation-validator.service';
-import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { ResetPasswordDto } from 'src/app/core/Models/ResetPasswordDto';
+import { PasswordConfirmationValidatorService } from 'src/app/core/services/password-confirmation-validator.service';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -50,7 +50,7 @@ export class ResetPasswordComponent implements OnInit {
     this.showError = this.showSuccess = false;
     const resetPass = { ...resetPasswordFormValue };
 
-    const resetPasswordDto: ResetPassword = {
+    const resetPasswordDto: ResetPasswordDto = {
       password: resetPass.password,
       confirmPassword: resetPass.confirm,
       token: this.token,

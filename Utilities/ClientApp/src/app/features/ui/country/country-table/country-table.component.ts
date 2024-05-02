@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Country } from 'src/app/shared/Models/Country';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
+import { CountryDto } from 'src/app/core/Models/CountryDto';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 
 @Component({
   selector: 'app-country-table',
@@ -10,9 +10,9 @@ import { GenericRestService } from 'src/app/shared/services/generic-rest.service
 export class CountryTableComponent implements OnInit {
   protected entityType: string = "country";
   public headArray: string[] = ['id', 'name'];
-  public countries: Country[] = [];
+  public countries: CountryDto[] = [];
   
-  constructor(@Inject('countryService') protected readonly countryService: GenericRestService<Country>) { }
+  constructor(@Inject('countryService') protected readonly countryService: GenericRestService<CountryDto>) { }
 
   public ngOnInit(): void {
     this.countryService.getAll().subscribe(result => {

@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ForgotPassword } from 'src/app/shared/Models/ForgotPassword';
-import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { ForgotPasswordDto } from 'src/app/core/Models/ForgotPasswordDto';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -36,7 +36,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.showError = this.showSuccess = false;
     const forgotPass = { ...forgotPasswordFormValues };
 
-    const forgotPasswordDto: ForgotPassword = {
+    const forgotPasswordDto: ForgotPasswordDto = {
       email: forgotPass.email,
       clientUri: "https://localhost:44444/authentication/resetpassword"
     };

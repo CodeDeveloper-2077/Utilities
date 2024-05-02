@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Street } from 'src/app/shared/Models/Street';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
+import { StreetDto } from 'src/app/core/Models/StreetDto';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 
 @Component({
   selector: 'app-street-table',
@@ -10,9 +10,9 @@ import { GenericRestService } from 'src/app/shared/services/generic-rest.service
 export class StreetTableComponent implements OnInit {
   protected entityType: string = "street";
   public headArray: string[] = ['id', 'name'];
-  public streets: Street[] = [];
+  public streets: StreetDto[] = [];
   
-  constructor(@Inject('streetService') protected readonly streetService: GenericRestService<Street>) { }
+  constructor(@Inject('streetService') protected readonly streetService: GenericRestService<StreetDto>) { }
 
   public ngOnInit(): void {
     this.streetService.getAll().subscribe(result => {

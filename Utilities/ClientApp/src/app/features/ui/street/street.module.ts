@@ -5,8 +5,8 @@ import { AddEditStreetComponent } from './add-edit-street/add-edit-street.compon
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { routes } from './street.routes';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
-import { Street } from 'src/app/shared/Models/Street';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
+import { StreetDto } from 'src/app/core/Models/StreetDto';
 import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
 
 
@@ -20,7 +20,7 @@ import { GenericComponentsModule } from 'src/app/shared/generic-components.modul
     {
       provide: 'streetService',
       useFactory: (http: HttpClient) => {
-        return new GenericRestService<Street>(http, {
+        return new GenericRestService<StreetDto>(http, {
           resourceEndpoint: 'api/Street'
         })
       },

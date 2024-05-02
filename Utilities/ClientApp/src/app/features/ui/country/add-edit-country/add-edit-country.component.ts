@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Country } from 'src/app/shared/Models/Country';
-import { GenericRestService } from 'src/app/shared/services/generic-rest.service';
+import { CountryDto } from 'src/app/core/Models/CountryDto';
+import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 
 @Component({
   selector: 'app-add-edit-country',
@@ -11,5 +11,5 @@ export class AddEditCountryComponent {
   public countryFormFields: string[] = ['name'];
   
   public entityType: string = "country";
-  constructor(@Inject('countryService') protected countryService: GenericRestService<Country>) { }
+  constructor(@Inject('countryService') protected countryService: GenericRestService<CountryDto>) { }
 }
