@@ -4,6 +4,6 @@ import { AddEditStreetComponent } from "./add-edit-street/add-edit-street.compon
 
 export const routes: Routes = [
     { path: '', component: StreetTableComponent },
-    { path: 'add-street', component: AddEditStreetComponent },
-    { path: 'edit-street/:id', component: AddEditStreetComponent }
+    { path: 'add', component: AddEditStreetComponent },
+    { path: 'edit/:id', component: AddEditStreetComponent }
 ];

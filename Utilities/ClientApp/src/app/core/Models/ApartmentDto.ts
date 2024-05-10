@@ -11,6 +11,7 @@ export interface ApartmentDto {
     entranceNumber: number;
     receiptCode: string;
     street: StreetDto;
+    streetName: string;
     meterDocuments: MeterDocumentDto[];
     meters: MeterDto[];
 }

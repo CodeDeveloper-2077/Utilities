@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DAL.Dtos;
+using DAL.Models;
 using DAL.UnitOfWork;
 using EmailService;
 using LoggerService;
@@ -18,15 +19,6 @@ namespace Utilities.Controllers
             : base(logger, mapper, unitOfWork)
         {
             _emailSender = emailSender;
-        }
-
-        public override async Task<IActionResult> GetAllEntities()
-        {
-            var message = new Message(new string[] { "oleh.shevchenko.02@gmail.com" }, "Test email async", "This is the content from our email.");
-            await _emailSender.SendEmailAsync(message);
-            _logger.LogInfo("Email Sent");
-
-            return await base.GetAllEntities();
         }
     }
 }
