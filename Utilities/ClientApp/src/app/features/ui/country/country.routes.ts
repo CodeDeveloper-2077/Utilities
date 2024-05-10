@@ -4,6 +4,6 @@ import { AddEditCountryComponent } from "./add-edit-country/add-edit-country.com
 
 export const routes: Routes = [
     { path: '', component: CountryTableComponent },
-    { path: 'add-country', component: AddEditCountryComponent },
-    { path: 'edit-country/:id', component: AddEditCountryComponent }
+    { path: 'add', component: AddEditCountryComponent },
+    { path: 'edit/:id', component: AddEditCountryComponent }
 ];

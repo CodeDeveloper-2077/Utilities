@@ -17,11 +17,11 @@ export class DataGridComponent {
   constructor(private readonly stringConverter: StringConverterService, private readonly router: Router) { }
 
   public addBtn() {
-    this.router.navigate([`add-${this.entityType}`]);
+    this.router.navigate([`${this.entityType}s/add`]);
   }
 
   public updateBtn(id: number): void {
-    this.router.navigate([`edit-${this.entityType}/${id}`]);
+    this.router.navigate([`${this.entityType}s/edit/${id}`]);
   }
 
   public removeBtn(id: number): void {

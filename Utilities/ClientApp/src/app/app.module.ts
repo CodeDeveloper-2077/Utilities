@@ -21,7 +21,7 @@ export function tokenGetter() {
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'authentication', loadChildren: () => import('./features/authentication/authentication.module').then(m => m.AuthenticationModule) },
-  { path: 'apartments', loadChildren: () => import('./features/ui/apartment/apartment.module').then(m => m.ApartmentModule), canActivate: [AuthGuard] },
+  { path: 'apartments', loadChildren: () => import('./features/ui/apartment/apartment.module').then(m => m.ApartmentModule) },
   { path: 'areas', loadChildren: () => import('./features/ui/area/area.module').then(m => m.AreaModule) },
   { path: 'cities', loadChildren: () => import('./features/ui/city/city.module').then(m => m.CityModule) },
   { path: 'countries', loadChildren: () => import('./features/ui/country/country.module').then(m => m.CountryModule) },

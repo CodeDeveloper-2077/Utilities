@@ -9,7 +9,7 @@ import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 })
 export class AddEditApartmentComponent {
   public isNewDiv: boolean = false;
-  public apartmentFormFields: string[] = ['relatedFamily', 'registeredCountPeople', 'apartmentNumber', 'houseNumber', 'buildingNumber', 'entranceNumber', 'receiptCode'];
+  public apartmentFormFields: string[] = ['relatedFamily', 'registeredCountPeople', 'apartmentNumber', 'houseNumber', 'buildingNumber', 'entranceNumber', 'receiptCode', 'streetName'];
   
   public entityType: string = "apartment";
   constructor(@Inject('apartmentService') protected apartmentService: GenericRestService<ApartmentDto>) { }
