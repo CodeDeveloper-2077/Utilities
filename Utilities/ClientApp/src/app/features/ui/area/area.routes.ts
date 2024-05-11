@@ -4,6 +4,6 @@ import { AddEditAreaComponent } from "./add-edit-area/add-edit-area.component";
 
 export const routes: Routes = [
     { path: '', component: AreaTableComponent },
-    { path: 'add-area', component: AddEditAreaComponent },
-    { path: 'edit-area/:id', component: AddEditAreaComponent }
+    { path: 'add', component: AddEditAreaComponent },
+    { path: 'edit/:id', component: AddEditAreaComponent }
 ];

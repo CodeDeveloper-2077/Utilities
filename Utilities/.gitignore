@@ -222,6 +222,7 @@ FakesAssemblies/
 **/*.DesktopClient/ModelManifest.xml
 **/*.Server/GeneratedArtifacts
 **/*.Server/ModelManifest.xml
+Utilities/ClientApp/.angular/cache/14.0.3/angular-webpack/
 _Pvt_Extensions
 
 # Paket dependency manager

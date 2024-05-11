@@ -49,8 +49,10 @@ namespace Utilities.Controllers
                 return BadRequest(new RegistrationResponseDto() { Errors = errors });
             }
 
+            await _userManager.AddToRoleAsync(user, "Viewer");
+            await _userManager.SetTwoFactorEnabledAsync(user, true);
+
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
             var param = new Dictionary<string, string>
             {
                 { "token", token },
@@ -61,9 +63,6 @@ namespace Utilities.Controllers
 
             var message = new Message(new string[] { user.Email }, "Email Confirmation Token", callback);
             await _emailSender.SendEmailAsync(message);
-
-            await _userManager.AddToRoleAsync(user, "Viewer");
-            await _userManager.SetTwoFactorEnabledAsync(user, true);
 
             return StatusCode(201);
         }

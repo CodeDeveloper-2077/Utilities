@@ -4,6 +4,6 @@ import { AddEditMeterComponent } from "./add-edit-meter/add-edit-meter.component
 
 export const routes: Routes = [
     { path: '', component: MeterTableComponent },
-    { path: 'add-meter', component: AddEditMeterComponent },
-    { path: 'edit-meter/:id', component: AddEditMeterComponent }
+    { path: 'add', component: AddEditMeterComponent },
+    { path: 'edit/:id', component: AddEditMeterComponent }
 ];
