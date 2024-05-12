@@ -1,6 +1,40 @@
-<h1 id="tableLabel">Apartments</h1>
+<p *ngIf="!apartments"><em>Loading...</em></p>
+<button (click)="addBtn()">Add</button>
 
-<p>Below you can see the list of all apartments.</p>
-
-
-<app-data-grid [headArray]="headArray" [dataArray]="apartments" [entityType]="entityType" [genericRestService]="apartmentService"></app-data-grid>
+<table class='table table-bordered' aria-labelledby="tableLabel" *ngIf="apartments">
+  <thead>
+    <tr>
+        <th>Related Family</th>
+        <th>Registered Count People</th>
+        <th>Receipt Code</th>
+        <th>Country</th>
+        <th>State</th>
+        <th>City</th>
+        <th>Street</th>
+        <th>Apartment Number</th>
+        <th>House Number</th>
+        <th>Building Number</th>
+        <th>Entrance Number</th>
+        <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let apartment  of apartments">
+        <td>{{apartment.relatedFamily}}</td>
+        <td>{{apartment.registeredCountPeople}}</td>
+        <td>{{apartment.receiptCode}}</td>
+        <td>{{apartment.address.country}}</td>
+        <td>{{apartment.address.state}}</td>
+        <td>{{apartment.address.city}}</td>
+        <td>{{apartment.address.street}}</td>
+        <td>{{apartment.address.apartmentNumber}}</td>
+        <td>{{apartment.address.houseNumber}}</td>
+        <td>{{apartment.address.buildingNumber}}</td>
+        <td>{{apartment.address.entranceNumber}}</td>
+        <td>
+          <button class="btn btn-primary" (click)="updateBtn(apartment.id)">Update</button>
+          <button class="btn btn-danger" (click)="removeBtn(apartment.id)">Delete</button>
+        </td>
+    </tr>
+  </tbody>
+</table>

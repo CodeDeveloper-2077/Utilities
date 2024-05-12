@@ -24,6 +24,6 @@ namespace DAL.Models
 
         public int ApartmentId { get; set; }
 
-        public Apartment? Apartment { get; set; }
+        public virtual Apartment? Apartment { get; set; }
     }
 }

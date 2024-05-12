@@ -1,1 +1,67 @@
-<app-add-edit-form [formFields]="apartmentFormFields" [entityType]="entityType" [genericRestService]="apartmentService"></app-add-edit-form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form method="post" [formGroup]="apartmentForm" (ngSubmit)="sendData(apartmentForm.value)">
+          <div class="form-group">
+            <label for="relatedFamily">Related Family</label>
+            <input class="form-control" id="relatedFamily" type="text" formControlName="relatedFamily" />
+          </div>
+
+          <div class="form-group">
+            <label for="registeredCountPeople">Registered Count People</label>
+            <input class="form-control" id="registeredCountPeople" type="text" formControlName="registeredCountPeople" />
+          </div>
+
+          <div class="form-group">
+            <label for="receiptCode">Receipt Code</label>
+            <input class="form-control" id="receiptCode" type="text" formControlName="receiptCode" />
+          </div>
+
+          <div formGroupName="address">
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input class="form-control" id="country" type="text" formControlName="country" />
+              </div>
+
+              <div class="form-group">
+                <label for="state">State</label>
+                <input class="form-control" id="state" type="text" formControlName="state" />
+              </div>
+
+              <div class="form-group">
+                <label for="city">City</label>
+                <input class="form-control" id="city" type="text" formControlName="city" />
+              </div>
+
+              <div class="form-group">
+                <label for="street">Street</label>
+                <input class="form-control" id="street" type="text" formControlName="street" />
+              </div>
+
+              <div class="form-group">
+                <label for="apartmentNumber">Apartment Number</label>
+                <input class="form-control" id="apartmentNumber" type="text" formControlName="apartmentNumber" />
+              </div>
+
+              <div class="form-group">
+                <label for="houseNumber">House Number</label>
+                <input class="form-control" id="houseNumber" type="text" formControlName="houseNumber" />
+              </div>
+
+              <div class="form-group">
+                <label for="buildingNumber">Building Number</label>
+                <input class="form-control" id="buildingNumber" type="text" formControlName="buildingNumber" />
+              </div>
+
+              <div class="form-group">
+                <label for="entranceNumber">Entrance Number</label>
+                <input class="form-control" id="entranceNumber" type="text" formControlName="entranceNumber" />
+              </div>
+          </div>
+
+          <button class="btn btn-primary" type="submit" [disabled]="!apartmentForm.valid">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+

@@ -1,17 +1,13 @@
+import { AddressDto } from "./AddressDto";
 import { MeterDocumentDto } from "./MeterDocumentDto";
 import { MeterDto } from "./MeterDto";
-import { StreetDto } from "./StreetDto";
 
 export interface ApartmentDto {
+    id: number;
     relatedFamily: string;
     registeredCountPeople: number;
-    apartmentNumber: number;
-    houseNumber: number;
-    buildingNumber: number;
-    entranceNumber: number;
     receiptCode: string;
-    street: StreetDto;
-    streetName: string;
+    address: AddressDto;
     meterDocuments: MeterDocumentDto[];
     meters: MeterDto[];
 }

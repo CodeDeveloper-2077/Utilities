@@ -20,7 +20,5 @@ namespace DAL.Dtos
         public int BuildingNumber { get; set; }
 
         public int EntranceNumber { get; set; }
-
-        public ApartmentDto? Apartment { get; set; }
     }
 }
