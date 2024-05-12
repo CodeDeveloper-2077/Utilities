@@ -6,25 +6,17 @@ namespace Utilities.Models
     {
         public int Id { get; set; }
 
-        public string RelatedFamily { get; set; }
+        public string? RelatedFamily { get; set; }
 
         public int RegisteredCountPeople { get; set; }
-
-        public string ApartmentNumber { get; set; }
-
-        public string HouseNumber { get; set; }
-
-        public int BuildingNumber { get; set; }
-
-        public int EntranceNumber { get; set; }
 
         public string? ReceiptCode { get; set; }
 
         public virtual MeterDocument? MeterDocument { get; set; }
 
-        public int StreetId { get; set; }
+        public int AddressId { get; set; }
 
-        public virtual Street? Street { get; set; }
+        public virtual Address? Address { get; set; }
 
         public virtual IEnumerable<Meter> Meters { get; set; }
 
