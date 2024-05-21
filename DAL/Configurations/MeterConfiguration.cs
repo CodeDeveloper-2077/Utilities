@@ -13,13 +13,17 @@ namespace DAL.Configurations
             builder.Property(m => m.MeterName).HasMaxLength(50);
             builder.Property(m => m.MeterNumber).HasMaxLength(8);
 
-            builder.HasOne(m => m.MeterLocation)
-                   .WithOne(ml => ml.Meter)
-                   .HasForeignKey<MeterLocation>(ml => ml.MeterId);
-
             builder.HasOne(m => m.Apartment)
                    .WithMany(a => a.Meters)
                    .HasForeignKey(m => m.ApartmentId);
+
+            builder.HasOne(m => m.MeterLocation)
+                   .WithOne(ml => ml.Meter)
+                   .HasForeignKey<Meter>(m => m.MeterLocationId);
+
+            builder.HasOne(m => m.MeterDocument)
+                   .WithOne(md => md.Meter)
+                   .HasForeignKey<Meter>(m => m.MeterDocumentId);
         }
     }
 }

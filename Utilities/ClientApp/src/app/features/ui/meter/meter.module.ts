@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 import { MeterDto } from 'src/app/core/Models/MeterDto';
 import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -30,6 +31,7 @@ import { GenericComponentsModule } from 'src/app/shared/generic-components.modul
   imports: [
     CommonModule,
     GenericComponentsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ]
 })

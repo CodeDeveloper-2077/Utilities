@@ -12,8 +12,6 @@
 
         public AddressDto? Address { get; set; }
 
-        public MeterDocumentDto? MeterDocument { get; set; }
-
         public IEnumerable<MeterDto>? Meters { get; set; }
     }
 }

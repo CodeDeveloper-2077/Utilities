@@ -1,5 +1,25 @@
-<h1 id="tableLabel">Meters</h1>
+<p *ngIf="!meters"><em>Loading...</em></p>
+<button (click)="addBtn()">Add</button>
 
-<p>Below you can see the list of all meters.</p>
-
-<app-data-grid [headArray]="headArray" [dataArray]="meters" [entityType]="entityType" [genericRestService]="meterService"></app-data-grid>
+<table class='table table-bordered' aria-labelledby="tableLabel" *ngIf="meters">
+  <thead>
+    <tr>
+        <th>Meter Name</th>
+        <th>Meter Number</th>
+        <th>Previous Check Date</th>
+        <th>Next Check Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let meter  of meters">
+        <td>{{meter.meterName}}</td>
+        <td>{{meter.meterNumber}}</td>
+        <td>{{meter.prevCheckDate}}</td>
+        <td>{{meter.nextCheckDate}}</td>
+        <td>
+          <button class="btn btn-primary" (click)="updateBtn(meter.id)">Update</button>
+          <button class="btn btn-danger" (click)="removeBtn(meter.id)">Delete</button>
+        </td>
+    </tr>
+  </tbody>
+</table>

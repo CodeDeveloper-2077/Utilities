@@ -22,6 +22,8 @@ namespace Utilities.Data
 
         public virtual DbSet<MeterDocument> MeterDocuments { get; set; }
 
+        public virtual DbSet<Address> Addresses { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

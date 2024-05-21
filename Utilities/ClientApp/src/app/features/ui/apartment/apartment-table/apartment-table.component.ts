@@ -26,7 +26,7 @@ export class ApartmentTableComponent implements OnInit {
   }
 
   public updateBtn(id: number): void {
-    this.router.navigate([`/apartments/edit/${id}`]);
+    this.router.navigate([`/apartments/edit/`, id]);
   }
 
   public removeBtn(id: number): void {

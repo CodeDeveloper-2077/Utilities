@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Utilities.Data;
 
@@ -11,9 +12,11 @@ using Utilities.Data;
 namespace Utilities.Migrations
 {
     [DbContext(typeof(UtilitiesDb))]
-    partial class UtilitiesDbModelSnapshot : ModelSnapshot
+    [Migration("20240520180709_UpdateModelsMigration")]
+    partial class UpdateModelsMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -168,15 +171,15 @@ namespace Utilities.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "84a8e3a5-9e03-4e71-b801-4022a0ffb8d6",
-                            ConcurrencyStamp = "c3b0ef46-fc30-4d82-9c7d-8e80da713c88",
+                            Id = "1e66d505-f8a5-4ba1-a642-6e2fa7faf8ff",
+                            ConcurrencyStamp = "7b5245ba-d017-401e-8d13-1864c48af2dd",
                             Name = "Viewer",
                             NormalizedName = "VIEWER"
                         },
                         new
                         {
-                            Id = "d232d4b3-5a3a-4947-8f39-9dc2b74b2e73",
-                            ConcurrencyStamp = "7194fd04-689e-4d90-9cb0-9e6078a2bd2f",
+                            Id = "f60111ba-2174-4f7f-a1b4-7474aa055224",
+                            ConcurrencyStamp = "89380679-94e8-4f61-a752-1b69c032431a",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -369,6 +372,9 @@ namespace Utilities.Migrations
                     b.Property<byte[]>("Body")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("MeterId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

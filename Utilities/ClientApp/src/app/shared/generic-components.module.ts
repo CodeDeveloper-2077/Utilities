@@ -10,7 +10,7 @@ import { StringConverterService } from '../core/services/string-converter.servic
 @NgModule({
   declarations: [
     DataGridComponent,
-    AddEditFormComponent
+    AddEditFormComponent,
   ],
   providers: [StringConverterService],
   imports: [

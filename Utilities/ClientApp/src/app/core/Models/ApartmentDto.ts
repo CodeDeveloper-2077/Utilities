@@ -1,5 +1,4 @@
 import { AddressDto } from "./AddressDto";
-import { MeterDocumentDto } from "./MeterDocumentDto";
 import { MeterDto } from "./MeterDto";
 
 export interface ApartmentDto {
@@ -8,6 +7,5 @@ export interface ApartmentDto {
     registeredCountPeople: number;
     receiptCode: string;
     address: AddressDto;
-    meterDocuments: MeterDocumentDto[];
     meters: MeterDto[];
 }

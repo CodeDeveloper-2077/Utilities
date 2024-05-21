@@ -7,10 +7,9 @@ namespace Utilities.Models
         [Key]
         public int Id { get; set; }
 
-        public int ApartmentId { get; set; }
-        public virtual Apartment? Apartment { get; set; }
-
         [Required]
         public byte[]? Body { get; set; }
+
+        public virtual Meter? Meter { get; set; }
     }
 }

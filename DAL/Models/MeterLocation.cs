@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Utilities.Models
 {
@@ -10,8 +9,6 @@ namespace Utilities.Models
 
         [Required]
         public string? Name { get; set; }
-
-        public int MeterId { get; set; }
 
         public virtual Meter? Meter { get; set; }
     }

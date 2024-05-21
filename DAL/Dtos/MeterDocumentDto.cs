@@ -7,5 +7,7 @@ namespace DAL.Dtos
         public int Id { get; set; }
 
         public byte[]? Body { get; set; }
+
+        public MeterDto? Meter { get; set; }
     }
 }

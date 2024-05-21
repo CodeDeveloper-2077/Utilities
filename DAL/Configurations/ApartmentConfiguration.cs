@@ -14,10 +14,6 @@ namespace DAL.Configurations
             builder.Property(a => a.RelatedFamily)
                    .HasMaxLength(250);
 
-            builder.HasOne(a => a.MeterDocument)
-                   .WithOne(md => md.Apartment)
-                   .HasForeignKey<MeterDocument>(md => md.ApartmentId);
-
             builder.HasOne(a => a.Address)
                    .WithOne(a => a.Apartment)
                    .HasForeignKey<Address>(a => a.ApartmentId);

@@ -12,8 +12,6 @@ namespace Utilities.Models
 
         public string? ReceiptCode { get; set; }
 
-        public virtual MeterDocument? MeterDocument { get; set; }
-
         public int AddressId { get; set; }
 
         public virtual Address? Address { get; set; }
