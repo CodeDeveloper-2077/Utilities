@@ -4,8 +4,10 @@ using DAL.UnitOfWork;
 using EmailService;
 using LoggerService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using NLog.Extensions.Logging;
 using System.Text;
@@ -24,6 +26,12 @@ builder.Services.AddCors(options =>
         builder.AllowAnyMethod();
         builder.AllowAnyHeader();
     });
+});
+builder.Services.Configure<FormOptions>(o =>
+{
+    o.ValueLengthLimit = int.MaxValue;
+    o.MultipartBoundaryLengthLimit = int.MaxValue;
+    o.MemoryBufferThreshold = int.MaxValue;
 });
 
 builder.Services.AddEndpointsApiExplorer();
@@ -103,6 +111,11 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions()
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Resources")),
+    RequestPath = new PathString("/Resources")
+});
 app.UseRouting();
 app.UseCors("CorsPolicy");
 app.UseAuthentication();

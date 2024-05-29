@@ -9,6 +9,7 @@ import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 import { MeterDto } from 'src/app/core/Models/MeterDto';
 import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MeterDocumentModule } from '../meter-document/meter-document.module';
 
 
 
@@ -32,6 +33,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     GenericComponentsModule,
     ReactiveFormsModule,
+    MeterDocumentModule,
     RouterModule.forChild(routes)
   ]
 })
