@@ -33,8 +33,8 @@ import { MeterDocumentModule } from '../meter-document/meter-document.module';
     CommonModule,
     GenericComponentsModule,
     ReactiveFormsModule,
-    MeterDocumentModule,
     RouterModule.forChild(routes)
-  ]
+  ],
+  exports: [RouterModule]
 })
 export class MeterModule { }

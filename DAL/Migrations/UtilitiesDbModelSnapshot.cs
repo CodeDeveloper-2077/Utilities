@@ -8,7 +8,7 @@ using Utilities.Data;
 
 #nullable disable
 
-namespace Utilities.Migrations
+namespace DAL.Migrations
 {
     [DbContext(typeof(UtilitiesDb))]
     partial class UtilitiesDbModelSnapshot : ModelSnapshot
@@ -42,30 +42,102 @@ namespace Utilities.Migrations
                     b.Property<int>("BuildingNumber")
                         .HasColumnType("int");
 
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("EntranceNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("HouseNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Street")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("StreetId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ApartmentId")
                         .IsUnique();
 
+                    b.HasIndex("StreetId");
+
                     b.ToTable("Addresses");
+                });
+
+            modelBuilder.Entity("DAL.Models.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("StateId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StateId");
+
+                    b.ToTable("Cities");
+                });
+
+            modelBuilder.Entity("DAL.Models.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("DAL.Models.State", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("States");
+                });
+
+            modelBuilder.Entity("DAL.Models.Street", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.ToTable("Streets");
                 });
 
             modelBuilder.Entity("DAL.Models.User", b =>
@@ -168,15 +240,15 @@ namespace Utilities.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "84a8e3a5-9e03-4e71-b801-4022a0ffb8d6",
-                            ConcurrencyStamp = "c3b0ef46-fc30-4d82-9c7d-8e80da713c88",
+                            Id = "152b6f37-d159-483d-8cae-53aa0453ed64",
+                            ConcurrencyStamp = "7ba2ecc2-2586-44c8-b79a-0d448405c12f",
                             Name = "Viewer",
                             NormalizedName = "VIEWER"
                         },
                         new
                         {
-                            Id = "d232d4b3-5a3a-4947-8f39-9dc2b74b2e73",
-                            ConcurrencyStamp = "7194fd04-689e-4d90-9cb0-9e6078a2bd2f",
+                            Id = "2152a1de-69aa-4260-bc5d-97adeb772cfd",
+                            ConcurrencyStamp = "78693ae4-9964-4b78-8e88-453b9f4ef73c",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -325,8 +397,8 @@ namespace Utilities.Migrations
                     b.Property<int>("ApartmentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MeterDocumentId")
-                        .HasColumnType("int");
+                    b.Property<string>("DocPath")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MeterLocationId")
                         .HasColumnType("int");
@@ -349,30 +421,10 @@ namespace Utilities.Migrations
 
                     b.HasIndex("ApartmentId");
 
-                    b.HasIndex("MeterDocumentId")
-                        .IsUnique();
-
                     b.HasIndex("MeterLocationId")
                         .IsUnique();
 
                     b.ToTable("Meters");
-                });
-
-            modelBuilder.Entity("Utilities.Models.MeterDocument", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<byte[]>("Body")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MeterDocuments");
                 });
 
             modelBuilder.Entity("Utilities.Models.MeterLocation", b =>
@@ -400,7 +452,40 @@ namespace Utilities.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DAL.Models.Street", "Street")
+                        .WithMany()
+                        .HasForeignKey("StreetId");
+
                     b.Navigation("Apartment");
+
+                    b.Navigation("Street");
+                });
+
+            modelBuilder.Entity("DAL.Models.City", b =>
+                {
+                    b.HasOne("DAL.Models.State", "State")
+                        .WithMany("Cities")
+                        .HasForeignKey("StateId");
+
+                    b.Navigation("State");
+                });
+
+            modelBuilder.Entity("DAL.Models.State", b =>
+                {
+                    b.HasOne("DAL.Models.Country", "Country")
+                        .WithMany("States")
+                        .HasForeignKey("CountryId");
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("DAL.Models.Street", b =>
+                {
+                    b.HasOne("DAL.Models.City", "City")
+                        .WithMany("Sreets")
+                        .HasForeignKey("CityId");
+
+                    b.Navigation("City");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -462,12 +547,6 @@ namespace Utilities.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Utilities.Models.MeterDocument", "MeterDocument")
-                        .WithOne("Meter")
-                        .HasForeignKey("Utilities.Models.Meter", "MeterDocumentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Utilities.Models.MeterLocation", "MeterLocation")
                         .WithOne("Meter")
                         .HasForeignKey("Utilities.Models.Meter", "MeterLocationId")
@@ -476,9 +555,22 @@ namespace Utilities.Migrations
 
                     b.Navigation("Apartment");
 
-                    b.Navigation("MeterDocument");
-
                     b.Navigation("MeterLocation");
+                });
+
+            modelBuilder.Entity("DAL.Models.City", b =>
+                {
+                    b.Navigation("Sreets");
+                });
+
+            modelBuilder.Entity("DAL.Models.Country", b =>
+                {
+                    b.Navigation("States");
+                });
+
+            modelBuilder.Entity("DAL.Models.State", b =>
+                {
+                    b.Navigation("Cities");
                 });
 
             modelBuilder.Entity("Utilities.Models.Apartment", b =>
@@ -486,11 +578,6 @@ namespace Utilities.Migrations
                     b.Navigation("Address");
 
                     b.Navigation("Meters");
-                });
-
-            modelBuilder.Entity("Utilities.Models.MeterDocument", b =>
-                {
-                    b.Navigation("Meter");
                 });
 
             modelBuilder.Entity("Utilities.Models.MeterLocation", b =>

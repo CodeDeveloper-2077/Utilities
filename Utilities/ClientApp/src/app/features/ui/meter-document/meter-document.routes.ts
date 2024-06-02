@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
-import { AddMeterDocumentComponent } from "./add-meter-document/add-meter-document.component";
+import { UploadComponent } from "../../../shared/upload/upload.component";
 
 export const routes: Routes = [
-    { path: '', component: AddMeterDocumentComponent }
+    { path: '', component: UploadComponent }
 ];

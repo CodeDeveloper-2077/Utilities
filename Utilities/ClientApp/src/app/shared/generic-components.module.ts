@@ -4,6 +4,7 @@ import { DataGridComponent } from './data-grid/data-grid.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddEditFormComponent } from './add-edit-form/add-edit-form.component';
 import { StringConverterService } from '../core/services/string-converter.service';
+import { UploadComponent } from './upload/upload.component';
 
 
 
@@ -11,12 +12,13 @@ import { StringConverterService } from '../core/services/string-converter.servic
   declarations: [
     DataGridComponent,
     AddEditFormComponent,
+    UploadComponent
   ],
   providers: [StringConverterService],
   imports: [
     CommonModule,
     ReactiveFormsModule
   ],
-  exports: [DataGridComponent, AddEditFormComponent]
+  exports: [DataGridComponent, AddEditFormComponent, UploadComponent]
 })
 export class GenericComponentsModule { }

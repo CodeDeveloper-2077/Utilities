@@ -8,6 +8,8 @@
 
         public string? MeterNumber { get; set; }
 
+        public string? DocPath { get; set; }
+
         public DateTime PrevCheckDate { get; set; }
 
         public DateTime NextCheckDate { get; set; }
@@ -20,8 +22,8 @@
 
         public virtual MeterLocation? MeterLocation { get; set; }
 
-        public int MeterDocumentId { get; set; }
+        //public int MeterDocumentId { get; set; }
 
-        public virtual MeterDocument? MeterDocument { get; set; }
+        //public virtual MeterDocument? MeterDocument { get; set; }
     }
 }

@@ -10,6 +10,8 @@ import { GenericRestService } from 'src/app/core/services/generic-rest.service';
   styleUrls: ['./add-edit-meter.component.css']
 })
 export class AddEditMeterComponent {
+  public response: { dbPath: string };
+
   public meterForm: FormGroup;
   private id: number;
 
@@ -26,11 +28,17 @@ export class AddEditMeterComponent {
       meterNumber: ['', [Validators.required]],
       prevCheckDate: [new Date().getFullYear(), [Validators.required]],
       nextCheckDate: [new Date().getFullYear(), [Validators.required]],
-      apartmentId: ['', [Validators.required]]
+      apartmentId: ['', [Validators.required]],
+      meterLocationId: ['', [Validators.required]]
     });
 
     if (this.id) {
-      this.meterService.getById(this.id).subscribe(result => this.meterForm.patchValue(result),
+      this.meterService.getById(this.id).subscribe(result => {
+          this.meterForm.patchValue(result);
+          this.response = {
+            dbPath: result.docPath
+          };
+        },
         error => console.error(error));
     }
   }
@@ -45,14 +53,18 @@ export class AddEditMeterComponent {
   }
 
   private createMeter(data: any): void {
-    let meter = { ... data };
+    let meter = {...data, docPath: this.response.dbPath };
     this.meterService.add(meter).subscribe(result => console.log(result),
       error => console.error(error));
   }
 
   private updateMeter(data: any): void {
-    let meter = { id: this.id, ... data };
+    let meter = { id: this.id, docPath: this.response.dbPath, ... data };
     this.meterService.update(this.id, meter).subscribe(result => console.log(result),
       error => console.error(error));
+  }
+
+  public uploadFinished = (event): void => {
+    this.response = event;
   }
 }

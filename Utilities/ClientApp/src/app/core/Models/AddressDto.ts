@@ -1,13 +1,10 @@
 import { ApartmentDto } from "./ApartmentDto";
+import { StreetDto } from "./StreetDto";
 
 export interface AddressDto {
-    country: string;
-    state: string;
-    city: string;
-    street: string;
+    street: StreetDto;
     apartmentNumber: string;
     houseNumber: string;
     buildingNumber: number;
     entranceNumber: number;
-    apartment: ApartmentDto;
 }

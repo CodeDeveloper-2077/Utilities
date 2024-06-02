@@ -35,4 +35,8 @@ export class MeterTableComponent implements OnInit {
         error => console.error(error));
     }
   }
+  
+  public createDocPath = (serverPath: string) => {
+    return `https://localhost:7202/${serverPath}`;
+  }
 }

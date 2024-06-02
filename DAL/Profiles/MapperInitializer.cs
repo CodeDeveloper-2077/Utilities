@@ -13,7 +13,6 @@ namespace DAL.Profiles
             CreateMap<Meter, MeterDto>().ReverseMap();
             CreateMap<Address, Address>().ReverseMap();
             CreateMap<Address, AddressDto>().ReverseMap();
-            CreateMap<MeterDocument, MeterDocumentDto>().ReverseMap();
             CreateMap<MeterLocation, MeterLocationDto>().ReverseMap();
 
             CreateMap<UserForRegistrationDto, User>()

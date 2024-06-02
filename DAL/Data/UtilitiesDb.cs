@@ -20,9 +20,15 @@ namespace Utilities.Data
 
         public virtual DbSet<MeterLocation> MeterLocations { get; set; }
 
-        public virtual DbSet<MeterDocument> MeterDocuments { get; set; }
-
         public virtual DbSet<Address> Addresses { get; set; }
+
+        public virtual DbSet<Country> Countries { get; set; }
+
+        public virtual DbSet<State> States { get; set; }
+
+        public virtual DbSet<City> Cities { get; set; }
+
+        public virtual DbSet<Street> Streets { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

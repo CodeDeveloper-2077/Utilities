@@ -20,10 +20,6 @@ namespace DAL.Configurations
             builder.HasOne(m => m.MeterLocation)
                    .WithOne(ml => ml.Meter)
                    .HasForeignKey<Meter>(m => m.MeterLocationId);
-
-            builder.HasOne(m => m.MeterDocument)
-                   .WithOne(md => md.Meter)
-                   .HasForeignKey<Meter>(m => m.MeterDocumentId);
         }
     }
 }

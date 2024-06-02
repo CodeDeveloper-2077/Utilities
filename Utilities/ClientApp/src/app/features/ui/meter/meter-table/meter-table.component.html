@@ -8,14 +8,16 @@
         <th>Meter Number</th>
         <th>Previous Check Date</th>
         <th>Next Check Date</th>
+        <th>asdsa</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let meter  of meters">
+    <tr *ngFor="let meter of meters">
         <td>{{meter.meterName}}</td>
         <td>{{meter.meterNumber}}</td>
         <td>{{meter.prevCheckDate}}</td>
         <td>{{meter.nextCheckDate}}</td>
+        <td><img [src]="createDocPath(meter.docPath)" alt="profile picture" style="width:60px; height:60px;"></td>
         <td>
           <button class="btn btn-primary" (click)="updateBtn(meter.id)">Update</button>
           <button class="btn btn-danger" (click)="removeBtn(meter.id)">Delete</button>
