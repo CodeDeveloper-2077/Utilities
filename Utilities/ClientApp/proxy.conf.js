@@ -14,7 +14,8 @@ const PROXY_CONFIG = [
       "api/MeterDocument",
       "api/MeterLocation",
       "api/Street",
-      "api/Accounts"
+      "api/Accounts",
+      "api/Address"
    ],
     target: target,
     secure: false,

@@ -6,9 +6,9 @@ import { routes } from './meter-location.routes';
 import { HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddEditMeterLocationComponent } from './add-edit-meter-location/add-edit-meter-location.component';
-import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
 import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 import { MeterLocationDto } from 'src/app/core/Models/MeterLocationDto';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { MeterLocationDto } from 'src/app/core/Models/MeterLocationDto';
   ],
   imports: [
     CommonModule,
-    GenericComponentsModule,
+    SharedModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],

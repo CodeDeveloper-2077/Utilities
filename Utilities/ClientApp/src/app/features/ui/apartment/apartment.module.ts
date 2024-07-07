@@ -7,8 +7,8 @@ import { routes } from './apartment.routes';
 import { AddEditApartmentComponent } from './add-edit-apartment/add-edit-apartment.component';
 import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 import { ApartmentDto } from 'src/app/core/Models/ApartmentDto';
-import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -22,7 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
       provide: 'apartmentService',
       useFactory: (http: HttpClient) => {
         return new GenericRestService<ApartmentDto>(http, {
-          resourceEndpoint: 'api/Apartment'
+          resourceEndpoint: 'Apartment'
         })
       },
       deps: [HttpClient]
@@ -30,7 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    GenericComponentsModule,
+    SharedModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],

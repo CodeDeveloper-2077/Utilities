@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { UploadComponent } from \"../../../shared/upload/upload.component\";\nexport const routes = [{\n  path: '',\n  component: UploadComponent\n}];","map":null,"metadata":{},"sourceType":"module"}

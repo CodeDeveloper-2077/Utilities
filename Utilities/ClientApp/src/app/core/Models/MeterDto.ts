@@ -1,3 +1,6 @@
+import { ApartmentDto } from "./ApartmentDto";
+import { MeterLocationDto } from "./MeterLocationDto";
+
 export interface MeterDto {
     id: number;
     meterName: string;
@@ -5,7 +8,6 @@ export interface MeterDto {
     docPath: string;
     prevCheckDate: Date;
     nextCheckDate: Date;
-    apartmentId: number;
-    meterLocationId: number;
-    meterDocumentId: number;
+    apartment: ApartmentDto;
+    meterLocation: MeterLocationDto;
 }

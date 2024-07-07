@@ -13,6 +13,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { PrivacyComponent } from './features/ui/privacy/privacy.component';
 import { ForbiddenComponent } from './features/ui/forbidden/forbidden.component';
 import { AdminGuard } from './core/guards/admin.guard';
+import { SharedModule } from './shared/shared.module';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -23,7 +24,6 @@ const routes: Routes = [
   { path: 'authentication', loadChildren: () => import('./features/authentication/authentication.module').then(m => m.AuthenticationModule) },
   { path: 'apartments', loadChildren: () => import('./features/ui/apartment/apartment.module').then(m => m.ApartmentModule) },
   { path: 'meters', loadChildren: () => import('./features/ui/meter/meter.module').then(m => m.MeterModule) },
-  { path: 'meter-documents', loadChildren: () => import('./features/ui/meter-document/meter-document.module').then(m => m.MeterDocumentModule) },
   { path: 'meter-locations', loadChildren: () => import('./features/ui/meter-location/meter-location.module').then(m => m.MeterLocationModule) },
   { path: 'privacy', component: PrivacyComponent, canActivate: [AuthGuard, AdminGuard]},
   { path: 'forbidden', component: ForbiddenComponent }
@@ -41,6 +41,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(routes),
+    SharedModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

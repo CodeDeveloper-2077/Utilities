@@ -7,9 +7,8 @@ import { routes } from './meter.routes';
 import { HttpClient } from '@angular/common/http';
 import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 import { MeterDto } from 'src/app/core/Models/MeterDto';
-import { GenericComponentsModule } from 'src/app/shared/generic-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MeterDocumentModule } from '../meter-document/meter-document.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -31,7 +30,7 @@ import { MeterDocumentModule } from '../meter-document/meter-document.module';
   ],
   imports: [
     CommonModule,
-    GenericComponentsModule,
+    SharedModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],

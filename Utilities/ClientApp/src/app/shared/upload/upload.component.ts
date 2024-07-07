@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, Output, EventEmitter } from '@angular/core';
+import { AppSettings } from 'src/app/core/constants/AppSettings';
 
 @Component({
   selector: 'app-upload',
@@ -22,7 +23,7 @@ export class UploadComponent {
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
 
-    this.http.post("https://localhost:7202/api/upload", formData, { reportProgress: true, observe: 'events' }).subscribe({
+    this.http.post(`${AppSettings.API_ENDPOINT}upload`, formData, { reportProgress: true, observe: 'events' }).subscribe({
       next: (event) => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);

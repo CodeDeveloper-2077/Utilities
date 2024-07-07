@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MeterDto } from 'src/app/core/Models/MeterDto';
+import { AppSettings } from 'src/app/core/constants/AppSettings';
 import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 
 @Component({
@@ -37,6 +38,6 @@ export class MeterTableComponent implements OnInit {
   }
   
   public createDocPath = (serverPath: string) => {
-    return `https://localhost:7202/${serverPath}`;
+    return `${AppSettings.API_ENDPOINT}${serverPath}`;
   }
 }

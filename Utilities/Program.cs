@@ -11,6 +11,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using NLog.Extensions.Logging;
 using System.Text;
+using System.Text.Json.Serialization;
 using Utilities.Data;
 using Utilities.JwtFeatures;
 
@@ -47,7 +48,11 @@ builder.Services.AddLogging(loggingBuilder =>
 builder.Services.AddScoped<ILoggerManager, LoggerManager>();
 
 builder.Services.AddAutoMapper(typeof(MapperInitializer));
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
+
 builder.Services.AddDbContext<UtilitiesDb>(options =>
 {
     options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=UtilitiesDb;Integrated Security=True;");

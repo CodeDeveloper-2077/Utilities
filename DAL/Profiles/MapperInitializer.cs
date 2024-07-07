@@ -12,7 +12,10 @@ namespace DAL.Profiles
             CreateMap<Apartment, ApartmentDto>().ReverseMap();
             CreateMap<Meter, MeterDto>().ReverseMap();
             CreateMap<Address, Address>().ReverseMap();
-            CreateMap<Address, AddressDto>().ReverseMap();
+            CreateMap<Country, CountryDto>().ReverseMap();
+            CreateMap<State, StateDto>().ReverseMap();
+            CreateMap<City, CityDto>().ReverseMap();
+            CreateMap<Street, StreetDto>().ReverseMap();
             CreateMap<MeterLocation, MeterLocationDto>().ReverseMap();
 
             CreateMap<UserForRegistrationDto, User>()

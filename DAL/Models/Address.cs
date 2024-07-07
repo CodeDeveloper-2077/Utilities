@@ -18,8 +18,6 @@ namespace DAL.Models
 
         public int EntranceNumber { get; set; }
 
-        public int ApartmentId { get; set; }
-
         public virtual Apartment? Apartment { get; set; }
     }
 }

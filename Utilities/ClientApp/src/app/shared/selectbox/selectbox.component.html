@@ -1,0 +1,3 @@
+<select [name]="name" [id]="name" [(ngModel)]="selectedOption">
+    <option *ngFor="let entity of entities" [value]="entity.name">{{entity.name}}</option>
+</select>

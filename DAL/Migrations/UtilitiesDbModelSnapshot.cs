@@ -33,9 +33,6 @@ namespace DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ApartmentId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ApartmentNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -52,9 +49,6 @@ namespace DAL.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ApartmentId")
-                        .IsUnique();
 
                     b.HasIndex("StreetId");
 
@@ -240,15 +234,15 @@ namespace DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "152b6f37-d159-483d-8cae-53aa0453ed64",
-                            ConcurrencyStamp = "7ba2ecc2-2586-44c8-b79a-0d448405c12f",
+                            Id = "b52ae84c-ad50-463a-a005-0f583b6cdb13",
+                            ConcurrencyStamp = "7e59e1ee-b197-4576-be15-d1d1b540506b",
                             Name = "Viewer",
                             NormalizedName = "VIEWER"
                         },
                         new
                         {
-                            Id = "2152a1de-69aa-4260-bc5d-97adeb772cfd",
-                            ConcurrencyStamp = "78693ae4-9964-4b78-8e88-453b9f4ef73c",
+                            Id = "0350a923-5cf6-4bd7-a009-a3dc9abf5913",
+                            ConcurrencyStamp = "f57c5ec4-0cf6-40f6-b0af-fb4816fc3e25",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -383,6 +377,9 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AddressId")
+                        .IsUnique();
+
                     b.ToTable("Apartments");
                 });
 
@@ -446,17 +443,9 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.Models.Address", b =>
                 {
-                    b.HasOne("Utilities.Models.Apartment", "Apartment")
-                        .WithOne("Address")
-                        .HasForeignKey("DAL.Models.Address", "ApartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("DAL.Models.Street", "Street")
                         .WithMany()
                         .HasForeignKey("StreetId");
-
-                    b.Navigation("Apartment");
 
                     b.Navigation("Street");
                 });
@@ -482,7 +471,7 @@ namespace DAL.Migrations
             modelBuilder.Entity("DAL.Models.Street", b =>
                 {
                     b.HasOne("DAL.Models.City", "City")
-                        .WithMany("Sreets")
+                        .WithMany("Streets")
                         .HasForeignKey("CityId");
 
                     b.Navigation("City");
@@ -539,6 +528,17 @@ namespace DAL.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Utilities.Models.Apartment", b =>
+                {
+                    b.HasOne("DAL.Models.Address", "Address")
+                        .WithOne("Apartment")
+                        .HasForeignKey("Utilities.Models.Apartment", "AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+                });
+
             modelBuilder.Entity("Utilities.Models.Meter", b =>
                 {
                     b.HasOne("Utilities.Models.Apartment", "Apartment")
@@ -558,9 +558,14 @@ namespace DAL.Migrations
                     b.Navigation("MeterLocation");
                 });
 
+            modelBuilder.Entity("DAL.Models.Address", b =>
+                {
+                    b.Navigation("Apartment");
+                });
+
             modelBuilder.Entity("DAL.Models.City", b =>
                 {
-                    b.Navigation("Sreets");
+                    b.Navigation("Streets");
                 });
 
             modelBuilder.Entity("DAL.Models.Country", b =>
@@ -575,8 +580,6 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Utilities.Models.Apartment", b =>
                 {
-                    b.Navigation("Address");
-
                     b.Navigation("Meters");
                 });
 

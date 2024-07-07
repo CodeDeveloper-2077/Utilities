@@ -21,9 +21,5 @@
         public int MeterLocationId { get; set; }
 
         public virtual MeterLocation? MeterLocation { get; set; }
-
-        //public int MeterDocumentId { get; set; }
-
-        //public virtual MeterDocument? MeterDocument { get; set; }
     }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApartmentDto } from 'src/app/core/Models/ApartmentDto';
 import { GenericRestService } from 'src/app/core/services/generic-rest.service';
+import { AppSettings } from 'src/app/core/constants/AppSettings';
 
 @Component({
   selector: 'app-add-edit-apartment',
@@ -11,6 +12,7 @@ import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 })
 export class AddEditApartmentComponent implements OnInit {
   public apartmentForm: FormGroup;
+  public endpoint: string;
 
   private id: number;
   private isAddMode: boolean;
@@ -21,6 +23,8 @@ export class AddEditApartmentComponent implements OnInit {
               private readonly route: ActivatedRoute) { }
 
   public ngOnInit(): void {
+    this.endpoint = AppSettings.API_ENDPOINT;
+    
     this.id = Number.parseInt(this.route.snapshot.params['id']);
 
     this.apartmentForm = this.fb.group({

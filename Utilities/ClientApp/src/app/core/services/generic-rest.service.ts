@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AppSettings } from '../constants/AppSettings';
 
 export interface ServiceConfig {
   resourceEndpoint: string;
@@ -12,31 +13,29 @@ export const SERVICE_CONFIG = new InjectionToken<ServiceConfig>('ServiceConfig')
   providedIn: 'root'
 })
 export class GenericRestService<T> {
-  protected readonly baseUrl: string;
-  protected readonly resourceEndpoint: string;
+  private readonly resourceEndpoint: string;
 
-  constructor(protected readonly http: HttpClient, @Inject(SERVICE_CONFIG) config: ServiceConfig) {
-    this.baseUrl = "https://localhost:7202/";
+  constructor(private readonly http: HttpClient, @Inject(SERVICE_CONFIG) config: ServiceConfig) {
     this.resourceEndpoint = config.resourceEndpoint;
   }
 
   public getAll() : Observable<T[]> {
-    return this.http.get<T[]>(`${this.baseUrl}${this.resourceEndpoint}`);
+    return this.http.get<T[]>(`${AppSettings.API_ENDPOINT}${this.resourceEndpoint}`);
   }
 
   public getById(id: number) : Observable<T> {
-    return this.http.get<T>(`${this.baseUrl}${this.resourceEndpoint}/${id}`);
+    return this.http.get<T>(`${AppSettings.API_ENDPOINT}${this.resourceEndpoint}/${id}`);
   }
 
   public add(data: T) : Observable<T> {
-    return this.http.post<T>(`${this.baseUrl}${this.resourceEndpoint}`, data);
+    return this.http.post<T>(`${AppSettings.API_ENDPOINT}${this.resourceEndpoint}`, data);
   }
 
   public update(id: number, data: T) : Observable<T> {
-    return this.http.put<T>(`${this.baseUrl}${this.resourceEndpoint}/${id}`, data);
+    return this.http.put<T>(`${AppSettings.API_ENDPOINT}${this.resourceEndpoint}/${id}`, data);
   }
 
   public delete(id: number) : Observable<number> {
-    return this.http.delete<number>(`${this.baseUrl}${this.resourceEndpoint}/${id}`);
+    return this.http.delete<number>(`${AppSettings.API_ENDPOINT}${this.resourceEndpoint}/${id}`);
   }
 }

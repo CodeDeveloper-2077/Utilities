@@ -14,10 +14,8 @@
 
         public DateTime NextCheckDate { get; set; }
 
-        public int ApartmentId { get; set; }
+        public ApartmentDto? Apartment { get; set; }
 
-        public int MeterDocumentId { get; set; }
-
-        public int MeterLocationId { get; set; }
+        public MeterLocationDto? MeterLocation { get; set; }
     }
 }

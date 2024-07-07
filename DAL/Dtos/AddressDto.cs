@@ -2,6 +2,8 @@
 {
     public class AddressDto
     {
+        public int Id { get; set; }
+
         public ApartmentDto? Apartment { get; set; }
 
         public StreetDto? Street { get; set; }
