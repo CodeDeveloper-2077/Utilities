@@ -16,7 +16,7 @@ namespace Utilities.Models
 
         public virtual Address? Address { get; set; }
 
-        public virtual IEnumerable<Meter> Meters { get; set; }
+        public virtual IEnumerable<Meter>? Meters { get; set; }
 
         public Apartment()
         {

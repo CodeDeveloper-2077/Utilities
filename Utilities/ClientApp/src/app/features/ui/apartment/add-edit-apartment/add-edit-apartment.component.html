@@ -19,32 +19,29 @@
 
           <div formGroupName="address">
             <div class="form-group">
-                <label for="countries">Countries</label>
-                <!-- <input class="form-control" id="country" type="text" formControlName="country" /> -->
-                <app-selectbox name="countries" [url]="endpoint + 'address/countries'">
+                <label for="country">Countries</label>
+                <app-selectbox name="country" [url]="endpoint + 'address/countries'" formControlName="country">
                   Loading countries...
                 </app-selectbox>
               </div>
 
               <div class="form-group">
-                <label for="states">State</label>
-                <!-- <input class="form-control" id="state" type="text" formControlName="state" /> -->
-                <app-selectbox name="states" [url]="endpoint + 'address/states'">
+                <label for="state">State</label>
+                <app-selectbox name="state" [url]="endpoint + 'address/states'" formControlName="state">
                   Loading states...
                 </app-selectbox>
               </div>
 
               <div class="form-group">
-                <label for="cities">Cities</label>
-                <!-- <input class="form-control" id="city" type="text" formControlName="city" /> -->
-                <app-selectbox name="cities" [url]="endpoint + 'address/cities'">
+                <label for="city">Cities</label>
+                <app-selectbox name="city" [url]="endpoint + 'address/cities'" formControlName="city">
                   Loading cities...
                 </app-selectbox>
               </div>
 
               <div class="form-group">
                 <label for="streets">Street</label>
-                <app-selectbox name="streets" [url]="endpoint + 'address/streets'">
+                <app-selectbox name="street" [url]="endpoint + 'address/streets'" formControlName="street">
                   Loading streets...
                 </app-selectbox>
               </div>
@@ -70,7 +67,7 @@
               </div>
           </div>
 
-          <button class="btn btn-primary" type="submit" [disabled]="!apartmentForm.valid">Submit</button>
+          <button class="btn btn-primary" type="submit">Submit</button>
         </form>
       </div>
     </div>

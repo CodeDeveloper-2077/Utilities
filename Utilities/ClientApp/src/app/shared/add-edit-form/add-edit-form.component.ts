@@ -39,6 +39,7 @@ export class AddEditFormComponent implements OnInit {
   }
 
   public sendData(data: any): void {
+    debugger;
     if (this.isAddMode)
       this.createEntity(data);
     else

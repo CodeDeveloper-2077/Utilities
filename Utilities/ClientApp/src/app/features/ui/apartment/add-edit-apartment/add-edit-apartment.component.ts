@@ -4,6 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApartmentDto } from 'src/app/core/Models/ApartmentDto';
 import { GenericRestService } from 'src/app/core/services/generic-rest.service';
 import { AppSettings } from 'src/app/core/constants/AppSettings';
+import { CountryDto } from 'src/app/core/Models/CountryDto';
+import { StateDto } from 'src/app/core/Models/StateDto';
+import { CityDto } from 'src/app/core/Models/CityDto';
+import { StreetDto } from 'src/app/core/Models/StreetDto';
+import { AddressDto } from 'src/app/core/Models/AddressDto';
 
 @Component({
   selector: 'app-add-edit-apartment',
@@ -25,7 +30,7 @@ export class AddEditApartmentComponent implements OnInit {
   public ngOnInit(): void {
     this.endpoint = AppSettings.API_ENDPOINT;
     
-    this.id = Number.parseInt(this.route.snapshot.params['id']);
+    this.id = +this.route.snapshot.params['id'];
 
     this.apartmentForm = this.fb.group({
       relatedFamily: ['', [Validators.required]],
@@ -42,10 +47,18 @@ export class AddEditApartmentComponent implements OnInit {
         entranceNumber: ['', [Validators.required]]
       })
     });
+    const addressFormGroup: FormGroup = this.apartmentForm.controls['address'] as FormGroup;
+
 
     if (this.id) {
-      this.apartmentService.getById(this.id).subscribe(result => this.apartmentForm.patchValue(result),
-        error => console.error(error));
+      // this.apartmentService.getById(this.id).subscribe(result => this.apartmentForm.patchValue(result),
+      //   error => console.error(error));
+      this.apartmentService.getById(this.id).subscribe(result => {
+        this.apartmentForm.controls['relatedFamily'].setValue(result.relatedFamily);
+        this.apartmentForm.controls['registeredCountPeople'].setValue(result.registeredCountPeople);
+        this.apartmentForm.controls['receiptCode'].setValue(result.receiptCode);
+        addressFormGroup.controls['country'].setValue('Poland');
+      }, error => console.error(error));
     }
   }
 
@@ -59,7 +72,44 @@ export class AddEditApartmentComponent implements OnInit {
   }
 
   private createApartment(data: any): void {
-    let apartment = { ... data };
+    debugger;
+    let formData = { ... data };
+    const formAddress = formData.address;
+
+    const country: CountryDto = {
+      name: formAddress.country
+    };
+
+    const state: StateDto = {
+      name: formAddress.state,
+      country: country
+    };
+
+    const city: CityDto = {
+      name: formAddress.city,
+      state: state
+    };
+
+    const street: StreetDto = {
+      name: formAddress.street,
+      city: city
+    };
+    
+    const address: AddressDto = {
+      apartmentNumber: formAddress.apartmentNumber,
+      buildingNumber: formAddress.buildingNumber,
+      entranceNumber: formAddress.entranceNumber,
+      houseNumber: formAddress.houseNumber,
+      street: street
+    };
+
+    const apartment: ApartmentDto = {
+      relatedFamily: formData.relatedFamily,
+      receiptCode: formData.receiptCode,
+      registeredCountPeople: formData.registeredCountPeople,
+      address: address
+    };
+
     this.apartmentService.add(apartment).subscribe(result => console.log(result),
       error => console.error(error));
   }
