@@ -8,7 +8,9 @@
         <th>Meter Number</th>
         <th>Previous Check Date</th>
         <th>Next Check Date</th>
-        <th>asdsa</th>
+        <th>Location</th>
+        <th>Meter Picture</th>
+        <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -17,7 +19,8 @@
         <td>{{meter.meterNumber}}</td>
         <td>{{meter.prevCheckDate}}</td>
         <td>{{meter.nextCheckDate}}</td>
-        <td><img [src]="createDocPath(meter.docPath)" alt="profile picture" style="width:60px; height:60px;"></td>
+        <td>{{meter.meterLocation.name}}</td>
+        <td><img [src]="createDocPath(meter.docPath)" alt="picture" style="width:60px; height:60px;"></td>
         <td>
           <button class="btn btn-primary" (click)="updateBtn(meter.id)">Update</button>
           <button class="btn btn-danger" (click)="removeBtn(meter.id)">Delete</button>

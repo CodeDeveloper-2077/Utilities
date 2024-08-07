@@ -22,7 +22,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
       provide: 'meterService',
       useFactory: (http: HttpClient) => {
         return new GenericRestService<MeterDto>(http, {
-          resourceEndpoint: 'api/Meter'
+          resourceEndpoint: 'Meter'
         })
       },
       deps: [HttpClient]

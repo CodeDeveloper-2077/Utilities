@@ -29,7 +29,9 @@ export class AddEditMeterComponent {
       prevCheckDate: [new Date().getFullYear(), [Validators.required]],
       nextCheckDate: [new Date().getFullYear(), [Validators.required]],
       apartmentId: ['', [Validators.required]],
-      meterLocationId: ['', [Validators.required]]
+      meterLocation: this.fb.group({
+        name: ['', Validators.required]
+      })
     });
 
     if (this.id) {

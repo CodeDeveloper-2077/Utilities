@@ -8,6 +8,7 @@ export interface MeterDto {
     docPath: string;
     prevCheckDate: Date;
     nextCheckDate: Date;
+    apartmentId: number;
     apartment: ApartmentDto;
     meterLocation: MeterLocationDto;
 }

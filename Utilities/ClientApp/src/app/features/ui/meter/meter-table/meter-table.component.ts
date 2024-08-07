@@ -38,6 +38,6 @@ export class MeterTableComponent implements OnInit {
   }
   
   public createDocPath = (serverPath: string) => {
-    return `${AppSettings.API_ENDPOINT}${serverPath}`;
+    return `https://localhost:7202/${serverPath}`;
   }
 }

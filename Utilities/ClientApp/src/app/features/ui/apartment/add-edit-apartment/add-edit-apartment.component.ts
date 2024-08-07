@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApartmentDto } from 'src/app/core/Models/ApartmentDto';
 import { GenericRestService } from 'src/app/core/services/generic-rest.service';
@@ -57,7 +57,6 @@ export class AddEditApartmentComponent implements OnInit {
         this.apartmentForm.controls['relatedFamily'].setValue(result.relatedFamily);
         this.apartmentForm.controls['registeredCountPeople'].setValue(result.registeredCountPeople);
         this.apartmentForm.controls['receiptCode'].setValue(result.receiptCode);
-        addressFormGroup.controls['country'].setValue('Poland');
       }, error => console.error(error));
     }
   }

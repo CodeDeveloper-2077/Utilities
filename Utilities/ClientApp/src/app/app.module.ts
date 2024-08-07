@@ -24,7 +24,6 @@ const routes: Routes = [
   { path: 'authentication', loadChildren: () => import('./features/authentication/authentication.module').then(m => m.AuthenticationModule) },
   { path: 'apartments', loadChildren: () => import('./features/ui/apartment/apartment.module').then(m => m.ApartmentModule) },
   { path: 'meters', loadChildren: () => import('./features/ui/meter/meter.module').then(m => m.MeterModule) },
-  { path: 'meter-locations', loadChildren: () => import('./features/ui/meter-location/meter-location.module').then(m => m.MeterLocationModule) },
   { path: 'privacy', component: PrivacyComponent, canActivate: [AuthGuard, AdminGuard]},
   { path: 'forbidden', component: ForbiddenComponent }
 ];
